@@ -55,6 +55,11 @@ export default function RootLayout({ children }: LayoutProps<"/">) {
       data-glass={DEFAULT_SITE_PREFERENCES.glass}
     >
       <body className="min-h-full flex flex-col">
+        {/*
+          同步内联脚本，放在 body 最上面：内容渲染之前就按 cookie 改好 <html>，所以不闪。
+          不能用 next/script 的 beforeInteractive —— 那条路要等 Next 运行时加载后才执行。
+          next-themes 的脚本也是这么插的。
+        */}
         <script dangerouslySetInnerHTML={{ __html: sitePreferencesScript() }} />
         <LocaleProvider>
           <SitePreferencesProvider>
