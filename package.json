@@ -5,10 +5,11 @@
   "description": "从 createagle-docs 抽离的 Apple Liquid Glass 风格 shadcn 组件库及展示页",
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "shadcn build && next build",
     "start": "next start",
     "lint": "eslint",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "registry": "shadcn build"
   },
   "dependencies": {
     "@base-ui/react": "^1.8.0",

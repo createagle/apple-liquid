@@ -1,0 +1,1618 @@
+{
+  "$schema": "https://ui.shadcn.com/schema/registry.json",
+  "name": "apple-liquid",
+  "homepage": "https://createagle.github.io/apple-liquid",
+  "items": [
+    {
+      "name": "accordion",
+      "type": "registry:ui",
+      "title": "Accordion",
+      "files": [
+        {
+          "path": "src/components/ui/accordion.tsx",
+          "type": "registry:ui",
+          "target": "@ui/accordion.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "alert",
+      "type": "registry:ui",
+      "title": "Alert",
+      "files": [
+        {
+          "path": "src/components/ui/alert.tsx",
+          "type": "registry:ui",
+          "target": "@ui/alert.tsx"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "alert-dialog",
+      "type": "registry:ui",
+      "title": "Alert Dialog",
+      "files": [
+        {
+          "path": "src/components/ui/alert-dialog.tsx",
+          "type": "registry:ui",
+          "target": "@ui/alert-dialog.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "aspect-ratio",
+      "type": "registry:ui",
+      "title": "Aspect Ratio",
+      "files": [
+        {
+          "path": "src/components/ui/aspect-ratio.tsx",
+          "type": "registry:ui",
+          "target": "@ui/aspect-ratio.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "attachment",
+      "type": "registry:ui",
+      "title": "Attachment",
+      "files": [
+        {
+          "path": "src/components/ui/attachment.tsx",
+          "type": "registry:ui",
+          "target": "@ui/attachment.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "avatar",
+      "type": "registry:ui",
+      "title": "Avatar",
+      "files": [
+        {
+          "path": "src/components/ui/avatar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/avatar.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/use-in-view.json"
+      ]
+    },
+    {
+      "name": "background",
+      "type": "registry:ui",
+      "title": "Background",
+      "files": [
+        {
+          "path": "src/components/ui/background.tsx",
+          "type": "registry:ui",
+          "target": "@ui/background.tsx"
+        },
+        {
+          "path": "src/components/particles.tsx",
+          "type": "registry:component",
+          "target": "@components/particles.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "ogl@^1.0.11"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "badge",
+      "type": "registry:ui",
+      "title": "Badge",
+      "files": [
+        {
+          "path": "src/components/ui/badge.tsx",
+          "type": "registry:ui",
+          "target": "@ui/badge.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "breadcrumb",
+      "type": "registry:ui",
+      "title": "Breadcrumb",
+      "files": [
+        {
+          "path": "src/components/ui/breadcrumb.tsx",
+          "type": "registry:ui",
+          "target": "@ui/breadcrumb.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "bubble",
+      "type": "registry:ui",
+      "title": "Bubble",
+      "files": [
+        {
+          "path": "src/components/ui/bubble.tsx",
+          "type": "registry:ui",
+          "target": "@ui/bubble.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "button",
+      "type": "registry:ui",
+      "title": "Button",
+      "files": [
+        {
+          "path": "src/components/ui/button.tsx",
+          "type": "registry:ui",
+          "target": "@ui/button.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "button-group",
+      "type": "registry:ui",
+      "title": "Button Group",
+      "files": [
+        {
+          "path": "src/components/ui/button-group.tsx",
+          "type": "registry:ui",
+          "target": "@ui/button-group.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/separator.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "calendar",
+      "type": "registry:ui",
+      "title": "Calendar",
+      "files": [
+        {
+          "path": "src/components/ui/calendar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/calendar.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0",
+        "react-day-picker@^10.0.1"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "card",
+      "type": "registry:ui",
+      "title": "Card",
+      "files": [
+        {
+          "path": "src/components/ui/card.tsx",
+          "type": "registry:ui",
+          "target": "@ui/card.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "carousel",
+      "type": "registry:ui",
+      "title": "Carousel",
+      "files": [
+        {
+          "path": "src/components/ui/carousel.tsx",
+          "type": "registry:ui",
+          "target": "@ui/carousel.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "embla-carousel-react@^8.6.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "chart",
+      "type": "registry:ui",
+      "title": "Chart",
+      "files": [
+        {
+          "path": "src/components/ui/chart.tsx",
+          "type": "registry:ui",
+          "target": "@ui/chart.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "recharts@3.8.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "checkbox",
+      "type": "registry:ui",
+      "title": "Checkbox",
+      "files": [
+        {
+          "path": "src/components/ui/checkbox.tsx",
+          "type": "registry:ui",
+          "target": "@ui/checkbox.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "motion@^13.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "collapsible",
+      "type": "registry:ui",
+      "title": "Collapsible",
+      "files": [
+        {
+          "path": "src/components/ui/collapsible.tsx",
+          "type": "registry:ui",
+          "target": "@ui/collapsible.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "color-picker",
+      "type": "registry:ui",
+      "title": "Color Picker",
+      "files": [
+        {
+          "path": "src/components/ui/color-picker/index.content.ts",
+          "type": "registry:ui",
+          "target": "@ui/color-picker/index.content.ts"
+        },
+        {
+          "path": "src/components/ui/color-picker/index.tsx",
+          "type": "registry:ui",
+          "target": "@ui/color-picker/index.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "next-intlayer@^9.5.3",
+        "react-colorful@^5.8.1"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/input.json",
+        "https://createagle.github.io/apple-liquid/r/popover.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "combobox",
+      "type": "registry:ui",
+      "title": "Combobox",
+      "files": [
+        {
+          "path": "src/components/ui/combobox.tsx",
+          "type": "registry:ui",
+          "target": "@ui/combobox.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/input-group.json",
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "command",
+      "type": "registry:ui",
+      "title": "Command",
+      "files": [
+        {
+          "path": "src/components/ui/command.tsx",
+          "type": "registry:ui",
+          "target": "@ui/command.tsx"
+        }
+      ],
+      "dependencies": [
+        "cmdk@^1.1.1",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/dialog.json",
+        "https://createagle.github.io/apple-liquid/r/input-group.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "context-menu",
+      "type": "registry:ui",
+      "title": "Context Menu",
+      "files": [
+        {
+          "path": "src/components/ui/context-menu.tsx",
+          "type": "registry:ui",
+          "target": "@ui/context-menu.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/use-mobile.json"
+      ]
+    },
+    {
+      "name": "dialog",
+      "type": "registry:ui",
+      "title": "Dialog",
+      "files": [
+        {
+          "path": "src/components/ui/dialog/index.content.ts",
+          "type": "registry:ui",
+          "target": "@ui/dialog/index.content.ts"
+        },
+        {
+          "path": "src/components/ui/dialog/index.tsx",
+          "type": "registry:ui",
+          "target": "@ui/dialog/index.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "next-intlayer@^9.5.3"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/use-mobile.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "direction",
+      "type": "registry:ui",
+      "title": "Direction",
+      "files": [
+        {
+          "path": "src/components/ui/direction.tsx",
+          "type": "registry:ui",
+          "target": "@ui/direction.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "drawer",
+      "type": "registry:ui",
+      "title": "Drawer",
+      "files": [
+        {
+          "path": "src/components/ui/drawer.tsx",
+          "type": "registry:ui",
+          "target": "@ui/drawer.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "dropdown-menu",
+      "type": "registry:ui",
+      "title": "Dropdown Menu",
+      "files": [
+        {
+          "path": "src/components/ui/dropdown-menu.tsx",
+          "type": "registry:ui",
+          "target": "@ui/dropdown-menu.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/use-mobile.json"
+      ]
+    },
+    {
+      "name": "empty",
+      "type": "registry:ui",
+      "title": "Empty",
+      "files": [
+        {
+          "path": "src/components/ui/empty.tsx",
+          "type": "registry:ui",
+          "target": "@ui/empty.tsx"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "field",
+      "type": "registry:ui",
+      "title": "Field",
+      "files": [
+        {
+          "path": "src/components/ui/field/index.content.ts",
+          "type": "registry:ui",
+          "target": "@ui/field/index.content.ts"
+        },
+        {
+          "path": "src/components/ui/field/index.tsx",
+          "type": "registry:ui",
+          "target": "@ui/field/index.tsx"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0",
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "next-intlayer@^9.5.3"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/label.json",
+        "https://createagle.github.io/apple-liquid/r/separator.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/tooltip.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "glass-surface",
+      "type": "registry:ui",
+      "title": "Glass Surface",
+      "files": [
+        {
+          "path": "src/components/ui/glass-surface.tsx",
+          "type": "registry:ui",
+          "target": "@ui/glass-surface.tsx"
+        },
+        {
+          "path": "src/components/ui/glass-surface.css",
+          "type": "registry:file",
+          "target": "@ui/glass-surface.css"
+        }
+      ],
+      "description": "React Bits 的 GlassSurface，原样搬来，适合浮在照片、视频之上的面。",
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "hover-card",
+      "type": "registry:ui",
+      "title": "Hover Card",
+      "files": [
+        {
+          "path": "src/components/ui/hover-card.tsx",
+          "type": "registry:ui",
+          "target": "@ui/hover-card.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/dialog.json",
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "input",
+      "type": "registry:ui",
+      "title": "Input",
+      "files": [
+        {
+          "path": "src/components/ui/input/input.content.ts",
+          "type": "registry:ui",
+          "target": "@ui/input/input.content.ts"
+        },
+        {
+          "path": "src/components/ui/input/input.tsx",
+          "type": "registry:ui",
+          "target": "@ui/input/input.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0",
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "next-intlayer@^9.5.3"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "input-group",
+      "type": "registry:ui",
+      "title": "Input Group",
+      "files": [
+        {
+          "path": "src/components/ui/input-group.tsx",
+          "type": "registry:ui",
+          "target": "@ui/input-group.tsx"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/input.json",
+        "https://createagle.github.io/apple-liquid/r/textarea.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "input-otp",
+      "type": "registry:ui",
+      "title": "Input Otp",
+      "files": [
+        {
+          "path": "src/components/ui/input-otp.tsx",
+          "type": "registry:ui",
+          "target": "@ui/input-otp.tsx"
+        }
+      ],
+      "dependencies": [
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0",
+        "input-otp@^1.5.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/input.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "item",
+      "type": "registry:ui",
+      "title": "Item",
+      "files": [
+        {
+          "path": "src/components/ui/item.tsx",
+          "type": "registry:ui",
+          "target": "@ui/item.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/separator.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "kbd",
+      "type": "registry:ui",
+      "title": "Kbd",
+      "files": [
+        {
+          "path": "src/components/ui/kbd.tsx",
+          "type": "registry:ui",
+          "target": "@ui/kbd.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "label",
+      "type": "registry:ui",
+      "title": "Label",
+      "files": [
+        {
+          "path": "src/components/ui/label.tsx",
+          "type": "registry:ui",
+          "target": "@ui/label.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "liquid-glass",
+      "type": "registry:component",
+      "title": "Liquid Glass",
+      "files": [
+        {
+          "path": "src/components/liquid-glass.tsx",
+          "type": "registry:component",
+          "target": "@components/liquid-glass.tsx"
+        }
+      ],
+      "description": "useLiquidGlass：给 Base UI 渲染的元素加液态玻璃（SVG 折射滤镜 + 模糊）。",
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "locale-provider",
+      "type": "registry:component",
+      "title": "Locale Provider",
+      "files": [
+        {
+          "path": "src/components/locale-provider.tsx",
+          "type": "registry:component",
+          "target": "@components/locale-provider.tsx"
+        }
+      ],
+      "description": "客户端的 Intlayer 语言上下文，按浏览器语言选择，供组件里的 useIntlayer 读取。",
+      "dependencies": [
+        "intlayer@^9.5.3",
+        "next-intlayer@^9.5.3"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "marker",
+      "type": "registry:ui",
+      "title": "Marker",
+      "files": [
+        {
+          "path": "src/components/ui/marker.tsx",
+          "type": "registry:ui",
+          "target": "@ui/marker.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "menubar",
+      "type": "registry:ui",
+      "title": "Menubar",
+      "files": [
+        {
+          "path": "src/components/ui/menubar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/menubar.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/dropdown-menu.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "message",
+      "type": "registry:ui",
+      "title": "Message",
+      "files": [
+        {
+          "path": "src/components/ui/message.tsx",
+          "type": "registry:ui",
+          "target": "@ui/message.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "message-scroller",
+      "type": "registry:ui",
+      "title": "Message Scroller",
+      "files": [
+        {
+          "path": "src/components/ui/message-scroller.tsx",
+          "type": "registry:ui",
+          "target": "@ui/message-scroller.tsx"
+        }
+      ],
+      "dependencies": [
+        "@shadcn/react@^0.3.1",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "mobile-sheet",
+      "type": "registry:ui",
+      "title": "Mobile Sheet",
+      "files": [
+        {
+          "path": "src/components/ui/mobile-sheet.tsx",
+          "type": "registry:ui",
+          "target": "@ui/mobile-sheet.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "motion-safe",
+      "type": "registry:component",
+      "title": "Motion Safe Props",
+      "files": [
+        {
+          "path": "src/lib/motion.ts",
+          "type": "registry:lib",
+          "target": "@lib/motion.ts"
+        }
+      ],
+      "description": "把 Base UI 的 render props 里与 Motion 同名的事件剔掉，避免冲突。",
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "native-select",
+      "type": "registry:ui",
+      "title": "Native Select",
+      "files": [
+        {
+          "path": "src/components/ui/native-select.tsx",
+          "type": "registry:ui",
+          "target": "@ui/native-select.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/select.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "navigation-menu",
+      "type": "registry:ui",
+      "title": "Navigation Menu",
+      "files": [
+        {
+          "path": "src/components/ui/navigation-menu.tsx",
+          "type": "registry:ui",
+          "target": "@ui/navigation-menu.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "pagination",
+      "type": "registry:ui",
+      "title": "Pagination",
+      "files": [
+        {
+          "path": "src/components/ui/pagination.tsx",
+          "type": "registry:ui",
+          "target": "@ui/pagination.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "popover",
+      "type": "registry:ui",
+      "title": "Popover",
+      "files": [
+        {
+          "path": "src/components/ui/popover.tsx",
+          "type": "registry:ui",
+          "target": "@ui/popover.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "progress",
+      "type": "registry:ui",
+      "title": "Progress",
+      "files": [
+        {
+          "path": "src/components/ui/progress.tsx",
+          "type": "registry:ui",
+          "target": "@ui/progress.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "questionnaire",
+      "type": "registry:ui",
+      "title": "Questionnaire",
+      "files": [
+        {
+          "path": "src/components/ui/questionnaire.tsx",
+          "type": "registry:ui",
+          "target": "@ui/questionnaire.tsx"
+        }
+      ],
+      "dependencies": [
+        "@shadcn/react@^0.3.1",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "radio-group",
+      "type": "registry:ui",
+      "title": "Radio Group",
+      "files": [
+        {
+          "path": "src/components/ui/radio-group.tsx",
+          "type": "registry:ui",
+          "target": "@ui/radio-group.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "motion@^13.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/motion-safe.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "resizable",
+      "type": "registry:ui",
+      "title": "Resizable",
+      "files": [
+        {
+          "path": "src/components/ui/resizable.tsx",
+          "type": "registry:ui",
+          "target": "@ui/resizable.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "react-resizable-panels@^4.12.4"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "scroll-area",
+      "type": "registry:ui",
+      "title": "Scroll Area",
+      "files": [
+        {
+          "path": "src/components/ui/scroll-area.tsx",
+          "type": "registry:ui",
+          "target": "@ui/scroll-area.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "select",
+      "type": "registry:ui",
+      "title": "Select",
+      "files": [
+        {
+          "path": "src/components/ui/select.tsx",
+          "type": "registry:ui",
+          "target": "@ui/select.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/use-mobile.json"
+      ]
+    },
+    {
+      "name": "separator",
+      "type": "registry:ui",
+      "title": "Separator",
+      "files": [
+        {
+          "path": "src/components/ui/separator.tsx",
+          "type": "registry:ui",
+          "target": "@ui/separator.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "sheet",
+      "type": "registry:ui",
+      "title": "Sheet",
+      "files": [
+        {
+          "path": "src/components/ui/sheet.tsx",
+          "type": "registry:ui",
+          "target": "@ui/sheet.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "sidebar",
+      "type": "registry:ui",
+      "title": "Sidebar",
+      "files": [
+        {
+          "path": "src/components/ui/sidebar.tsx",
+          "type": "registry:ui",
+          "target": "@ui/sidebar.tsx"
+        },
+        {
+          "path": "src/lib/sidebar.ts",
+          "type": "registry:lib",
+          "target": "@lib/sidebar.ts"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/input.json",
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/separator.json",
+        "https://createagle.github.io/apple-liquid/r/sheet.json",
+        "https://createagle.github.io/apple-liquid/r/skeleton.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/tooltip.json",
+        "https://createagle.github.io/apple-liquid/r/use-mobile.json"
+      ]
+    },
+    {
+      "name": "site-preferences",
+      "type": "registry:component",
+      "title": "Site Preferences",
+      "files": [
+        {
+          "path": "src/lib/site-preferences.ts",
+          "type": "registry:lib",
+          "target": "@lib/site-preferences.ts"
+        },
+        {
+          "path": "src/lib/favicon.ts",
+          "type": "registry:lib",
+          "target": "@lib/favicon.ts"
+        },
+        {
+          "path": "src/components/site-preferences-provider.tsx",
+          "type": "registry:component",
+          "target": "@components/site-preferences-provider.tsx"
+        },
+        {
+          "path": "src/components/site-preferences-panel/index.tsx",
+          "type": "registry:component",
+          "target": "@components/site-preferences-panel/index.tsx"
+        },
+        {
+          "path": "src/components/site-preferences-panel/index.content.ts",
+          "type": "registry:component",
+          "target": "@components/site-preferences-panel/index.content.ts"
+        }
+      ],
+      "description": "外观偏好（主色、玻璃通透度）：cookie 存储、CSS 变量注入和设置面板。",
+      "dependencies": [
+        "cn@^0.3.0",
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "next-intlayer@^9.5.3"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/radio-group.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "skeleton",
+      "type": "registry:ui",
+      "title": "Skeleton",
+      "files": [
+        {
+          "path": "src/components/ui/skeleton.tsx",
+          "type": "registry:ui",
+          "target": "@ui/skeleton.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "slider",
+      "type": "registry:ui",
+      "title": "Slider",
+      "files": [
+        {
+          "path": "src/components/ui/slider.tsx",
+          "type": "registry:ui",
+          "target": "@ui/slider.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "spinner",
+      "type": "registry:ui",
+      "title": "Spinner",
+      "files": [
+        {
+          "path": "src/components/ui/spinner.tsx",
+          "type": "registry:ui",
+          "target": "@ui/spinner.tsx"
+        },
+        {
+          "path": "src/components/ui/spinner.content.ts",
+          "type": "registry:ui",
+          "target": "@ui/spinner.content.ts"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "next-intlayer@^9.5.3"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "switch",
+      "type": "registry:ui",
+      "title": "Switch",
+      "files": [
+        {
+          "path": "src/components/ui/switch.tsx",
+          "type": "registry:ui",
+          "target": "@ui/switch.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "motion@^13.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/motion-safe.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "table",
+      "type": "registry:ui",
+      "title": "Table",
+      "files": [
+        {
+          "path": "src/components/ui/table.tsx",
+          "type": "registry:ui",
+          "target": "@ui/table.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "tabs",
+      "type": "registry:ui",
+      "title": "Tabs",
+      "files": [
+        {
+          "path": "src/components/ui/tabs.tsx",
+          "type": "registry:ui",
+          "target": "@ui/tabs.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "textarea",
+      "type": "registry:ui",
+      "title": "Textarea",
+      "files": [
+        {
+          "path": "src/components/ui/textarea.tsx",
+          "type": "registry:ui",
+          "target": "@ui/textarea.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "theme",
+      "type": "registry:item",
+      "title": "Apple Liquid Theme",
+      "files": [
+        {
+          "path": "src/styles/apple-liquid.css",
+          "type": "registry:file",
+          "target": "src/styles/apple-liquid.css"
+        }
+      ],
+      "description": "Apple Liquid 的设计 token：Apple 系统色、玻璃材质、字号、圆角，明暗两套。所有组件都依赖它。",
+      "dependencies": [
+        "shadcn@^4.21.0",
+        "tw-animate-css@^1.4.0"
+      ],
+      "css": {
+        "@import \"tw-animate-css\"": {},
+        "@import \"../styles/apple-liquid.css\"": {},
+        "@custom-variant dark (&:is(.dark *))": {}
+      },
+      "docs": "设计 token 装在 src/styles/apple-liquid.css，并在项目的入口 CSS 里加了一行 @import。入口 CSS 不在 app/globals.css（比如 Vite 的 src/index.css）时，把那行 @import 的相对路径改对即可。"
+    },
+    {
+      "name": "theme-toggle",
+      "type": "registry:component",
+      "title": "Theme Toggle",
+      "files": [
+        {
+          "path": "src/components/theme-provider.tsx",
+          "type": "registry:component",
+          "target": "@components/theme-provider.tsx"
+        },
+        {
+          "path": "src/components/theme-toggle/index.tsx",
+          "type": "registry:component",
+          "target": "@components/theme-toggle/index.tsx"
+        },
+        {
+          "path": "src/components/theme-toggle/index.content.ts",
+          "type": "registry:component",
+          "target": "@components/theme-toggle/index.content.ts"
+        },
+        {
+          "path": "src/components/theme-toggle/transition.ts",
+          "type": "registry:component",
+          "target": "@components/theme-toggle/transition.ts"
+        }
+      ],
+      "description": "明暗模式切换，带 View Transition 动画。",
+      "dependencies": [
+        "intlayer@^9.5.3",
+        "lucide-react@^1.46.0",
+        "motion@^13.3.0",
+        "next-intlayer@^9.5.3",
+        "next-themes@^0.4.6"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/collapsible.json",
+        "https://createagle.github.io/apple-liquid/r/dropdown-menu.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ],
+      "docs": "这个组件的文案放在同目录的 *.content.ts 里，用 Intlayer 的 t({ en, zh }) 写中英文。项目需要装好 intlayer / next-intlayer：根目录放 intlayer.config.ts，next.config 用 withIntlayer 包一层，并在根布局里挂 IntlayerProvider（可以直接装 locale-provider）。不想引入 Intlayer 的话，把文件里的 useIntlayer(...) 换成一个写死文案的常量对象即可（注意代码里用到了 .value）。"
+    },
+    {
+      "name": "toast",
+      "type": "registry:ui",
+      "title": "Toast",
+      "files": [
+        {
+          "path": "src/components/ui/toast.tsx",
+          "type": "registry:ui",
+          "target": "@ui/toast.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/button.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "toggle",
+      "type": "registry:ui",
+      "title": "Toggle",
+      "files": [
+        {
+          "path": "src/components/ui/toggle.tsx",
+          "type": "registry:ui",
+          "target": "@ui/toggle.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "toggle-group",
+      "type": "registry:ui",
+      "title": "Toggle Group",
+      "files": [
+        {
+          "path": "src/components/ui/toggle-group.tsx",
+          "type": "registry:ui",
+          "target": "@ui/toggle-group.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "class-variance-authority@^0.7.1",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/toggle.json"
+      ]
+    },
+    {
+      "name": "tooltip",
+      "type": "registry:ui",
+      "title": "Tooltip",
+      "files": [
+        {
+          "path": "src/components/ui/tooltip.tsx",
+          "type": "registry:ui",
+          "target": "@ui/tooltip.tsx"
+        }
+      ],
+      "dependencies": [
+        "@base-ui/react@^1.8.0",
+        "cn@^0.3.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/dialog.json",
+        "https://createagle.github.io/apple-liquid/r/liquid-glass.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "tree",
+      "type": "registry:ui",
+      "title": "Tree",
+      "files": [
+        {
+          "path": "src/components/ui/tree.tsx",
+          "type": "registry:ui",
+          "target": "@ui/tree.tsx"
+        }
+      ],
+      "dependencies": [
+        "cn@^0.3.0",
+        "lucide-react@^1.46.0"
+      ],
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/checkbox.json",
+        "https://createagle.github.io/apple-liquid/r/mobile-sheet.json",
+        "https://createagle.github.io/apple-liquid/r/popover.json",
+        "https://createagle.github.io/apple-liquid/r/select.json",
+        "https://createagle.github.io/apple-liquid/r/theme.json",
+        "https://createagle.github.io/apple-liquid/r/use-mobile.json"
+      ]
+    },
+    {
+      "name": "use-in-view",
+      "type": "registry:component",
+      "title": "Use In View",
+      "files": [
+        {
+          "path": "src/hooks/use-in-view.ts",
+          "type": "registry:hook",
+          "target": "@hooks/use-in-view.ts"
+        },
+        {
+          "path": "src/lib/observe-in-view.ts",
+          "type": "registry:lib",
+          "target": "@lib/observe-in-view.ts"
+        }
+      ],
+      "description": "useInView：元素进入视口时触发，基于共享的 IntersectionObserver。",
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    },
+    {
+      "name": "use-mobile",
+      "type": "registry:component",
+      "title": "Use Mobile",
+      "files": [
+        {
+          "path": "src/hooks/use-mobile.ts",
+          "type": "registry:hook",
+          "target": "@hooks/use-mobile.ts"
+        }
+      ],
+      "description": "useIsMobile：768px 以下走移动端分支（选择器改底部 sheet、Tooltip 不显示等）。",
+      "registryDependencies": [
+        "https://createagle.github.io/apple-liquid/r/theme.json"
+      ]
+    }
+  ]
+}

@@ -17,54 +17,50 @@ const SitePreferencesContext = React.createContext<{
 } | null>(null)
 
 /**
- * 与明暗模式独立：偏好存在 cookie 里，修改时同步 CSS 变量、玻璃通透度（<html data-glass>）和标签页图标。
+ * 偏好的唯一来源是 cookie 和 <html> 上的变量，React 这边不另存一份。
  *
- * 站点是静态导出的，服务端读不到 cookie，所以 HTML 里带的是默认偏好：首次绘制前由
- * sitePreferencesScript 按 cookie 改好 <html> 上的变量（视觉上不闪），这里再在挂载后把同一份
- * cookie 读进 state —— 只影响设置面板里哪一项显示为选中，面板是点开才看的，看不出来。
- * 标签页图标也放在这里换：服务端出的是默认蓝色，图标不参与绘制，不必抢在首屏之前。
+ * 站点是静态导出的，服务端读不到 cookie：HTML 里是默认偏好，首次绘制前由
+ * sitePreferencesScript 按 cookie 改好 <html>（视觉上不闪），React 则在
+ * hydration 之后从 getServerSnapshot 切到 getSnapshot，自然拿到同一份 cookie。
  */
-export function SitePreferencesProvider({
-  initialPreferences = DEFAULT_SITE_PREFERENCES,
-  children,
-}: {
-  initialPreferences?: SitePreferences
-  children: React.ReactNode
-}) {
-  const [preferences, setPreferences] = React.useState(initialPreferences)
+const listeners = new Set<() => void>()
+let snapshot: SitePreferences | null = null
 
-  React.useEffect(() => {
-    const stored = readSitePreferencesFromDocument()
-    setPreferences(stored)
-    if (stored.primaryColor !== DEFAULT_SITE_PREFERENCES.primaryColor) setFaviconColor(stored.primaryColor)
-  }, [])
+const subscribe = (listener: () => void) => {
+  listeners.add(listener)
+  return () => listeners.delete(listener)
+}
+const getSnapshot = () => (snapshot ??= readSitePreferencesFromDocument())
+const getServerSnapshot = () => DEFAULT_SITE_PREFERENCES
 
-  const updatePreferences = (changes: Partial<SitePreferences>) => {
-    const next = { ...preferences, ...changes }
-    const secure = location.protocol === "https:" ? "; Secure" : ""
-    for (const key of Object.keys(changes) as (keyof SitePreferences)[]) {
-      document.cookie = `${SITE_PREFERENCE_COOKIES[key]}=${next[key]}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`
-    }
-    for (const [key, value] of Object.entries(sitePreferenceVariables(next))) {
-      document.documentElement.style.setProperty(key, value)
-    }
-    document.documentElement.dataset.glass = next.glass
-    // 标签页图标读不到 CSS 变量，换主色时直接换掉 SVG 图标的地址。
-    if (changes.primaryColor) setFaviconColor(next.primaryColor)
-    setPreferences(next)
+/** 写 cookie，同步 CSS 变量和玻璃通透度（<html data-glass>），再通知订阅者。 */
+function updatePreferences(changes: Partial<SitePreferences>) {
+  const next = { ...getSnapshot(), ...changes }
+  const secure = location.protocol === "https:" ? "; Secure" : ""
+  for (const key of Object.keys(changes) as (keyof SitePreferences)[]) {
+    document.cookie = `${SITE_PREFERENCE_COOKIES[key]}=${next[key]}; Path=/; Max-Age=31536000; SameSite=Lax${secure}`
   }
-
-  return (
-    <SitePreferencesContext value={{ preferences, updatePreferences }}>
-      {children}
-    </SitePreferencesContext>
-  )
+  for (const [key, value] of Object.entries(sitePreferenceVariables(next))) {
+    document.documentElement.style.setProperty(key, value)
+  }
+  document.documentElement.dataset.glass = next.glass
+  snapshot = next
+  for (const listener of listeners) listener()
 }
 
-function setFaviconColor(color: SitePreferences["primaryColor"]) {
-  document
-    .querySelector<HTMLLinkElement>('link[rel="icon"][type="image/svg+xml"]')
-    ?.setAttribute("href", faviconHref(color))
+export function SitePreferencesProvider({ children }: { children: React.ReactNode }) {
+  const preferences = React.useSyncExternalStore(subscribe, getSnapshot, getServerSnapshot)
+
+  // 标签页图标读不到 CSS 变量，只能按主色换掉 <link rel="icon"> 的地址。
+  React.useEffect(() => {
+    document
+      .querySelector<HTMLLinkElement>('link[rel="icon"][type="image/svg+xml"]')
+      ?.setAttribute("href", faviconHref(preferences.primaryColor))
+  }, [preferences.primaryColor])
+
+  const value = React.useMemo(() => ({ preferences, updatePreferences }), [preferences])
+
+  return <SitePreferencesContext value={value}>{children}</SitePreferencesContext>
 }
 
 export function useSitePreferences() {
