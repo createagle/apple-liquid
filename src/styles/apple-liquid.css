@@ -107,7 +107,16 @@
   --ease-apple-spring: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
-:root {
+/*
+ * 下面几块 token 的选择器都写成双份（:root:root、.dark.dark、[data-glass="x"][data-glass]），
+ * 纯粹为了提权重：这个文件通过 registry 装到别的项目里时，是以 @import 的形式插在入口 CSS 的
+ * 最前面，而 shadcn init 自己生成的 :root / .dark 在后面 —— 同权重下后者会赢，Apple 的配色
+ * 就被 shadcn 的默认灰盖掉了。写成双份后权重 (0,2,0) 高过它们的 (0,1,0)，顺序就不再要紧。
+ * 这几块彼此之间的先后关系没变（data-glass 仍在 .dark 之后），所以本仓库里的表现完全一样。
+ * data-glass 没有限定 :root，局部加这个属性预览某一档的用法也还在。
+ */
+
+:root:root {
   /* ---- Apple system accents (light) ---- */
   --apple-blue: #0088ff;
   --apple-red: #ff383c;
@@ -265,7 +274,7 @@
   --admin-panel-edge: rgba(0, 0, 0, 0.06);
 }
 
-.dark {
+.dark.dark {
   /* ---- Apple system accents (dark) ---- */
   --apple-blue: #0a84ff;
   --apple-red: #ff4245;
@@ -377,8 +386,8 @@
  * 三档的原始值在上面按明暗主题分别定义，这里只做选择，所以与明暗无关；
  * 写成属性选择器而不限定 :root，局部加 data-glass 就能预览某一档（设置页的预览用到）。
  */
-:root,
-[data-glass="regular"] {
+:root:root,
+[data-glass="regular"][data-glass] {
   --glass-tint: var(--glass-tint-regular);
   --card-glass-tint: var(--card-glass-tint-regular);
   --lens-tint: var(--lens-tint-regular);
@@ -389,7 +398,7 @@
   --sheet-overlay: var(--sheet-overlay-regular);
 }
 
-[data-glass="clear"] {
+[data-glass="clear"][data-glass] {
   --glass-tint: var(--glass-tint-clear);
   --card-glass-tint: var(--card-glass-tint-clear);
   --lens-tint: var(--lens-tint-clear);
@@ -400,7 +409,7 @@
   --sheet-overlay: var(--sheet-overlay-clear);
 }
 
-[data-glass="tinted"] {
+[data-glass="tinted"][data-glass] {
   --glass-tint: var(--glass-tint-tinted);
   --card-glass-tint: var(--card-glass-tint-tinted);
   --lens-tint: var(--lens-tint-tinted);
