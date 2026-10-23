@@ -32,6 +32,9 @@
    Tooltip、HoverCard 在移动端默认不显示，也不拦截触发器的点击；仅纯展示型触发器传 `mobileTap`，
    点击打开居中 Dialog。Popover 保持现有行为。文本溢出展示使用 `OverflowTooltip`（已内置 `mobileTap`）。
 4. **组件文案放在同目录的 `*.content.ts`**，用 `t({ en, zh })` 同时写中英文。
+   展示页本身是静态导出的，拿不到 Accept-Language，固定按默认语言（英文）渲染 ——
+   原因和「别改成挂载后自动切」见 [locale-provider.tsx](./src/components/locale-provider.tsx)。
+   用这些组件的站点只要有服务端，照常用 `next-intlayer/server` 的 `IntlayerProvider` 就是双语的。
 5. **外观偏好**（主色、玻璃通透度、粒子背景、内容配色）存在 cookie 里，由
    [SitePreferencesProvider](./src/components/site-preferences-provider.tsx) 写到 `<html>` 的 CSS 变量和 `data-glass` 上。
 6. **液态玻璃（折射）按 Apple HIG 的 Materials 决定用在哪。** 常驻玻璃只给浮在内容之上的

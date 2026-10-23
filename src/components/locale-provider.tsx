@@ -1,52 +1,31 @@
 "use client"
 
 import * as React from "react"
-import { IntlayerProvider, useLocale } from "next-intlayer"
+import { IntlayerProvider } from "next-intlayer"
 import { Locales, type LocalesValues } from "intlayer"
 
-/** 与 intlayer.config.ts 的 defaultLocale 保持一致：静态 HTML 是按它渲染的。 */
+/** 与 intlayer.config.ts 的 defaultLocale 保持一致。 */
 const DEFAULT_LOCALE: LocalesValues = Locales.ENGLISH
 
 /**
  * 客户端的语言上下文（组件里的 useIntlayer 读它）。
  *
- * 站点是静态导出的，没有服务端，拿不到 Accept-Language，所以静态 HTML 里是默认语言（英文）；
- * 挂载后再按浏览器语言切一次。语言不写 cookie（站内也没有切换入口），每次都按浏览器语言判断。
+ * 展示页是静态导出的，没有服务端，拿不到 Accept-Language，所以整站固定按默认语言渲染。
  *
- * locale 必须显式传：不传的话 IntlayerProvider 会在 hydration 的那一次渲染里去读
- * INTLAYER_LOCALE cookie。cookie 是按域共享的，createagle.github.io 上别的站点写过这个
- * cookie，于是客户端首次渲染出中文、而静态 HTML 是英文，React 直接报水合不匹配。
+ * 不要改成「挂载后按 navigator.language 切一次」：React 19 的 hydration 是可中断的，
+ * 根布局那棵树先 hydrate 完、切语言的那次更新就生效了，等轮到页面那棵树时 context 已经
+ * 是中文、而 HTML 里是英文，于是每次打开都报一次水合不匹配（React #418）。
+ * useEffect 和 useSyncExternalStore 都绕不开这一点 —— 两者都要等组件挂载，
+ * 而「挂载」在选择性 hydration 下本来就是分批发生的。静态页面只能有一种语言。
  *
- * 需要 Accept-Language 在首屏就生效的站点，把这里换成 next-intlayer/server 的 IntlayerProvider
- * 并传 getLocale() 即可，但那样页面就不能静态导出了。
+ * 要按请求语言出首屏，就得有服务端：把这里换成 next-intlayer/server 的 IntlayerProvider
+ * 并传 getLocale()，同时去掉 next.config.ts 里的 output: "export"。
+ * 要在静态页面上支持中英切换，就得做成用户点击触发（点击发生在 hydration 之后，是安全的）。
  */
 export function LocaleProvider({ children }: { children: React.ReactNode }) {
-  const [locale, setLocale] = React.useState<LocalesValues>(DEFAULT_LOCALE)
-
   return (
-    <IntlayerProvider locale={locale} setLocale={setLocale} isCookieEnabled={false}>
-      <BrowserLocale />
+    <IntlayerProvider locale={DEFAULT_LOCALE} isCookieEnabled={false}>
       {children}
     </IntlayerProvider>
   )
-}
-
-/** 按 navigator.languages 在可用语言里挑一个，挑不到就留着默认语言。 */
-function BrowserLocale() {
-  const { locale, availableLocales, setLocale } = useLocale()
-
-  React.useEffect(() => {
-    const tags = navigator.languages?.length ? navigator.languages : [navigator.language]
-    for (const tag of tags) {
-      const base = tag.toLowerCase().split("-")[0]
-      const match = availableLocales.find((available) => String(available).toLowerCase().split("-")[0] === base)
-      if (match) {
-        if (match !== locale) setLocale(match)
-        return
-      }
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [])
-
-  return null
 }

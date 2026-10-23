@@ -7,6 +7,8 @@ shadcn/ui（base-nova 风格，底层 [Base UI](https://base-ui.com)）按 Apple
 **展示页：<https://createagle.github.io/apple-liquid/>**
 
 顶部「Appearance」可以切主色、玻璃通透度，下面所有组件会跟着变。
+展示页是静态页面，拿不到请求头，所以固定显示英文；组件本身的文案是中英双语的，
+装到有服务端的项目里会跟着请求语言走。
 
 ## 安装单个组件
 
