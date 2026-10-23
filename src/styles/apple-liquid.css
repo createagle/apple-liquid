@@ -1,0 +1,858 @@
+/*
+ * Apple Liquid 设计 token：Apple 系统色、材质（玻璃）、字号、圆角，明暗两套。
+ *
+ * 这个文件是组件库的样式底座，src/components/ui 下的组件只用这里的变量和工具类，
+ * 不写死颜色值。它同时是 registry 的基础 item（registry.json 里的 "theme"）：
+ * 装到别的项目里时原样落到 src/styles/apple-liquid.css，并在那个项目的入口 CSS 里
+ * 加上一行 @import。所以这里不能出现 @import "tailwindcss" 这类入口指令 ——
+ * 入口留在 src/app/globals.css。
+ */
+
+@theme inline {
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  /* layout.tsx 里 next/font 注入的那两个变量；写成 var(--font-sans) 是自引用，解析不出来。 */
+  --font-sans: var(--font-geist-sans);
+  --font-mono: var(--font-geist-mono);
+  --font-heading: var(--font-geist-sans);
+  --color-sidebar-ring: var(--sidebar-ring);
+  --color-sidebar-border: var(--sidebar-border);
+  --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+  --color-sidebar-accent: var(--sidebar-accent);
+  --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+  --color-sidebar-primary: var(--sidebar-primary);
+  --color-sidebar-foreground: var(--sidebar-foreground);
+  --color-sidebar: var(--sidebar);
+  --color-admin-panel: var(--admin-panel);
+  --color-admin-panel-edge: var(--admin-panel-edge);
+  --color-chart-5: var(--chart-5);
+  --color-chart-4: var(--chart-4);
+  --color-chart-3: var(--chart-3);
+  --color-chart-2: var(--chart-2);
+  --color-chart-1: var(--chart-1);
+  --color-ring: var(--ring);
+  --color-input: var(--input);
+  --color-border: var(--border);
+  --color-destructive: var(--destructive);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-accent: var(--accent);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-muted: var(--muted);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-secondary: var(--secondary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-primary: var(--primary);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-popover: var(--popover);
+  --color-glass-overlay: var(--glass-overlay);
+  --color-sheet-overlay: var(--sheet-overlay);
+  --color-card-foreground: var(--card-foreground);
+  --color-card: var(--card);
+  --radius-sm: calc(var(--radius) * 0.6);
+  --radius-md: calc(var(--radius) * 0.8);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) * 1.4);
+  --radius-2xl: calc(var(--radius) * 1.8);
+  --radius-3xl: calc(var(--radius) * 2.2);
+  --radius-4xl: calc(var(--radius) * 2.6);
+  /* Apple OS 27 — system accents (values read from the Figma kits) */
+  --color-apple-blue: var(--apple-blue);
+  --color-apple-red: var(--apple-red);
+  --color-apple-green: var(--apple-green);
+  --color-apple-orange: var(--apple-orange);
+  --color-apple-yellow: var(--apple-yellow);
+  --color-apple-pink: var(--apple-pink);
+  --color-apple-purple: var(--apple-purple);
+  --color-apple-teal: var(--apple-teal);
+  --color-apple-indigo: var(--apple-indigo);
+  --color-apple-mint: var(--apple-mint);
+  --color-apple-brown: var(--apple-brown);
+  --color-apple-cyan: var(--apple-cyan);
+  --color-content-blue: var(--content-blue);
+  --color-content-indigo: var(--content-indigo);
+  --color-content-purple: var(--content-purple);
+  --color-content-pink: var(--content-pink);
+  --color-content-red: var(--content-red);
+  --color-content-orange: var(--content-orange);
+  --color-content-green: var(--content-green);
+  --color-content-teal: var(--content-teal);
+  --color-content-cyan: var(--content-cyan);
+  --color-content-yellow: var(--content-yellow);
+  --color-content-brown: var(--content-brown);
+
+  /* Apple label / fill ramps */
+  --color-label-secondary: var(--label-secondary);
+  --color-label-tertiary: var(--label-tertiary);
+  --color-label-quaternary: var(--label-quaternary);
+  --color-fill-primary: var(--fill-primary);
+  --color-fill-secondary: var(--fill-secondary);
+  --color-fill-tertiary: var(--fill-tertiary);
+  --color-separator: var(--separator);
+  --color-field: var(--field);
+
+  /*
+   * 前台内容最大宽度（max-w-portal）：显示区 1200px + 两侧 sm:px-6 的 24px 留白。
+   * 页头、页面区块、页脚都用它，外沿才能对齐。
+   */
+  --container-portal: calc(1200px + 3rem);
+
+  /* Concentric container radii (Apple uses a capsule for controls) */
+  --radius-control: 9999px;
+  --radius-field: 12px;
+  --radius-card: 18px;
+  --radius-sheet: 26px;
+
+  /* SF Pro timing curves */
+  --ease-apple: cubic-bezier(0.32, 0.72, 0, 1);
+  --ease-apple-spring: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+:root {
+  /* ---- Apple system accents (light) ---- */
+  --apple-blue: #0088ff;
+  --apple-red: #ff383c;
+  --apple-green: #34c759;
+  --apple-orange: #ff8d28;
+  --apple-yellow: #ffcc00;
+  --apple-pink: #ff2d55;
+  --apple-purple: #cb30e0;
+  --apple-teal: #00c3d0;
+  --apple-indigo: #6155f5;
+  --apple-mint: #00c8b3;
+  --apple-brown: #ac7f5e;
+  --apple-cyan: #00c0e8;
+  /* macOS 强调色的粉：比系统色 pink 更偏粉，和 red 拉开距离；用于主色和内容配色 */
+  --macos-pink: #f74f9e;
+
+  /* ---- Apple labels & fills (light) ---- */
+  --label-secondary: rgba(60, 60, 67, 0.6);
+  --label-tertiary: rgba(60, 60, 67, 0.3);
+  --label-quaternary: rgba(60, 60, 67, 0.18);
+  --fill-primary: rgba(120, 120, 128, 0.2);
+  --fill-secondary: rgba(120, 120, 128, 0.16);
+  --fill-tertiary: rgba(118, 118, 128, 0.12);
+  --separator: rgba(60, 60, 67, 0.29);
+  /* macOS "Text Field / State=Idle": white fill + a 1px 8% hairline. */
+  --field: #ffffff;
+  --field-border: rgba(0, 0, 0, 0.08);
+
+  /* ---- Liquid Glass parameters (Figma: Liquid Glass/*) ---- */
+  --glass-blur: 14px;
+  --glass-saturate: 180%;
+  /* 底色按玻璃通透度分三档（clear / regular / tinted），实际生效的值见下方 data-glass 映射 */
+  --glass-tint-clear: rgba(255, 255, 255, 0.2);
+  --glass-tint-regular: rgba(255, 255, 255, 0.44);
+  --glass-tint-tinted: rgba(255, 255, 255, 0.72);
+  /* 背景遮罩随通透度变深；标准档沿用原来的弹窗 10%、抽屉 25%。 */
+  --glass-overlay-clear: rgba(0, 0, 0, 0.06);
+  --glass-overlay-regular: rgba(0, 0, 0, 0.1);
+  --glass-overlay-tinted: rgba(0, 0, 0, 0.18);
+  --sheet-overlay-clear: rgba(0, 0, 0, 0.16);
+  --sheet-overlay-regular: rgba(0, 0, 0, 0.25);
+  --sheet-overlay-tinted: rgba(0, 0, 0, 0.36);
+  --glass-edge: rgba(255, 255, 255, 0.7);
+  --glass-hairline: rgba(0, 0, 0, 0.06);
+  --glass-side: #d0d0d0;
+  --glass-drop: 0 8px 15px 0 rgba(0, 0, 0, 0.02);
+  --glass-specular: rgba(248, 248, 248, 0.2);
+  /*
+   * 内容卡片（glass-card）：半透明底色让卡片带一点页面底色、不再刺白；
+   * 顶部的高光边和由上往下淡出的反光做出液态玻璃的质感。
+   */
+  --card-glass-tint-clear: rgba(255, 255, 255, 0.36);
+  --card-glass-tint-regular: rgba(255, 255, 255, 0.6);
+  --card-glass-tint-tinted: rgba(255, 255, 255, 0.86);
+  --card-glass-specular: rgba(255, 255, 255, 0.75);
+  --card-glass-edge: rgba(255, 255, 255, 0.95);
+  --card-glass-drop: 0 1px 2px rgba(0, 0, 0, 0.03), 0 10px 28px -18px rgba(0, 0, 0, 0.16);
+  /*
+   * 控件透镜（Tab 指示器、开关与滑块的旋钮）：元素小、玻璃「厚」，
+   * 质感主要来自边缘的折射和一圈高光，所以模糊量比浮层玻璃小得多。
+   * 底色同样分三档，跟着外观设置里的玻璃通透度走；旋钮用 strong 那档，
+   * 压在蓝色轨道上也要是白的。
+   */
+  --lens-tint-clear: rgba(255, 255, 255, 0.1);
+  --lens-tint-regular: rgba(255, 255, 255, 0.18);
+  --lens-tint-tinted: rgba(255, 255, 255, 0.32);
+  /* 滑块、开关静止时就是一颗实心旋钮，按下才取用玻璃（见下方 data-trigger）。
+   * 旋钮背后是一整块纯色轨道，折射没有细节可弯，玻璃感全靠模糊和那圈高光，
+   * 所以底色不能像选中胶囊那样退得很低 —— 压在彩色轨道上它还得是一颗白旋钮。 */
+  --lens-solid-knob: #ffffff;
+  /* 选中胶囊静止时就是原来的实心卡片色，明暗跟着 --card 走。 */
+  --lens-solid-surface: var(--card);
+  --lens-tint-knob: rgba(255, 255, 255, 0.3);
+  --lens-specular: rgba(255, 255, 255, 0.7);
+  --lens-edge: rgba(255, 255, 255, 0.9);
+  /* 取用玻璃的那一刻换上的边：实心旋钮是顶上一道高光，玻璃是一整圈环加内侧的
+   * 厚度 —— 和大块玻璃 clear 档同一套配方，按控件尺寸缩小。顶上那道高光同时
+   * 收掉大半，否则 0.7 的白压在半透明底色上，上半块就看不见折射了。 */
+  --lens-ring-edge: rgba(0, 0, 0, 0.14);
+  --lens-ring-glow: rgba(0, 0, 0, 0.07);
+  --lens-specular-glass: rgba(255, 255, 255, 0.28);
+  --lens-rim: rgba(0, 0, 0, 0.05);
+  --lens-drop:
+    0 0 0 0.5px var(--glass-hairline), 0 1px 3px rgba(0, 0, 0, 0.12);
+  /* 开关、滑块旋钮的投影照搬 Figma，再补一圈 0.5px 的描边。 */
+  --lens-drop-switch:
+    0 0 0 0.5px var(--glass-hairline), 0 3px 8px rgba(0, 0, 0, 0.15),
+    0 3px 1px rgba(0, 0, 0, 0.06);
+  --lens-drop-slider:
+    0 0 0 0.5px var(--glass-hairline), 0 0.5px 4px rgba(0, 0, 0, 0.12),
+    0 6px 13px rgba(0, 0, 0, 0.12);
+  --lens-blur: 1px;
+  --lens-blur-frost: 8px;
+  --lens-saturate: 125%;
+  /*
+   * 导航层的大块玻璃折射时的模糊量。默认是 HIG 的 regular 档：照旧重模糊，因为菜单、
+   * 弹出层里都是要读的字，背后的内容必须糊掉。浮在照片、视频之上的面用 clear 档
+   * （.glass-clear），那一档才不模糊。
+   */
+  --pane-lens-blur: var(--glass-blur);
+  --pane-lens-saturate: var(--glass-saturate);
+  /* clear 档的底色：比 --glass-tint 淡得多，跟着玻璃通透度走。 */
+  --pane-frost-clear: rgba(255, 255, 255, 0.06);
+  --pane-frost-regular: rgba(255, 255, 255, 0.12);
+  --pane-frost-tinted: rgba(255, 255, 255, 0.26);
+  /* 玻璃的「厚度」改由两层内阴影给，和 GlassSurface 一样。 */
+  --pane-lens-rim: rgba(0, 0, 0, 0.15);
+  --pane-lens-glow: rgba(0, 0, 0, 0.1);
+  /* 底部抽屉：比浮层玻璃更实的底色 + 更重的模糊，透出色彩但不干扰阅读。 */
+  --sheet-tint-clear: rgba(246, 246, 248, 0.62);
+  --sheet-tint-regular: rgba(246, 246, 248, 0.84);
+  --sheet-tint-tinted: rgba(246, 246, 248, 0.95);
+  --sheet-blur: 32px;
+  --sheet-shadow: 0 -8px 40px rgba(0, 0, 0, 0.14);
+
+  /* ---- shadcn tokens remapped onto the Apple palette ---- */
+  --background: #ffffff;
+  --foreground: #1a1a1a;
+  --card: #ffffff;
+  --card-foreground: #1a1a1a;
+  --popover-clear: rgba(255, 255, 255, 0.6);
+  --popover-regular: rgba(255, 255, 255, 0.82);
+  --popover-tinted: rgba(255, 255, 255, 0.94);
+  --popover-foreground: #1a1a1a;
+  --primary: var(--site-primary, var(--apple-blue));
+  --primary-foreground: var(--site-primary-foreground, #ffffff);
+  --secondary: rgba(120, 120, 128, 0.12);
+  --secondary-foreground: #1a1a1a;
+  --muted: #f2f2f7;
+  --muted-foreground: rgba(60, 60, 67, 0.6);
+  --accent: rgba(120, 120, 128, 0.12);
+  --accent-foreground: #1a1a1a;
+  --destructive: var(--apple-red);
+  --border: rgba(60, 60, 67, 0.18);
+  --input: rgba(120, 120, 128, 0.16);
+  --ring: var(--primary);
+  --chart-1: var(--primary);
+  --chart-2: var(--apple-teal);
+  --chart-3: var(--apple-indigo);
+  --chart-4: var(--apple-orange);
+  --chart-5: var(--apple-pink);
+  --radius: 0.75rem;
+  --sidebar: rgba(242, 242, 247, 0.72);
+  --sidebar-foreground: #1a1a1a;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: rgba(120, 120, 128, 0.16);
+  --sidebar-accent-foreground: #1a1a1a;
+  --sidebar-border: rgba(60, 60, 67, 0.12);
+  --sidebar-ring: var(--primary);
+
+  /* ---- 后台底色：外框透出全站粒子背景 < 侧边栏 / 内容区面板 < 表格、卡片（--card） ----
+   * 仿 iOS 分组列表：面板是 systemGroupedBackground，卡片是白色，一眼能分开。 */
+  --admin-panel: #f2f2f7;
+  --admin-panel-edge: rgba(0, 0, 0, 0.06);
+}
+
+.dark {
+  /* ---- Apple system accents (dark) ---- */
+  --apple-blue: #0a84ff;
+  --apple-red: #ff4245;
+  --apple-green: #30d158;
+  --apple-orange: #ff9f0a;
+  --apple-yellow: #ffd60a;
+  --apple-pink: #ff375f;
+  --apple-purple: #da51f2;
+  --apple-teal: #40cbe0;
+  --apple-indigo: #7d7aff;
+  --apple-mint: #66d4cf;
+  --apple-brown: #b59469;
+  --apple-cyan: #5ac8f5;
+  --macos-pink: #ff6bb5;
+
+  /* ---- Apple labels & fills (dark) ---- */
+  --label-secondary: rgba(235, 235, 245, 0.6);
+  --label-tertiary: rgba(235, 235, 245, 0.3);
+  --label-quaternary: rgba(235, 235, 245, 0.16);
+  --fill-primary: rgba(120, 120, 128, 0.36);
+  --fill-secondary: rgba(120, 120, 128, 0.32);
+  --fill-tertiary: rgba(118, 118, 128, 0.24);
+  --separator: rgba(84, 84, 88, 0.65);
+  --field: rgba(30, 30, 32, 0.9);
+  --field-border: rgba(255, 255, 255, 0.14);
+
+  /* ---- Liquid Glass (dark) ---- */
+  --glass-tint-clear: rgba(58, 58, 60, 0.28);
+  --glass-tint-regular: rgba(58, 58, 60, 0.52);
+  --glass-tint-tinted: rgba(72, 72, 74, 0.78);
+  --glass-edge: rgba(255, 255, 255, 0.16);
+  --glass-hairline: rgba(255, 255, 255, 0.1);
+  --glass-side: rgba(255, 255, 255, 0.14);
+  --glass-drop: 0 8px 22px 0 rgba(0, 0, 0, 0.44);
+  --glass-specular: rgba(255, 255, 255, 0.06);
+  --card-glass-tint-clear: rgba(44, 44, 46, 0.32);
+  --card-glass-tint-regular: rgba(44, 44, 46, 0.55);
+  --card-glass-tint-tinted: rgba(44, 44, 46, 0.85);
+  --card-glass-specular: rgba(255, 255, 255, 0.06);
+  --card-glass-edge: rgba(255, 255, 255, 0.12);
+  --card-glass-drop: 0 1px 2px rgba(0, 0, 0, 0.2), 0 10px 28px -18px rgba(0, 0, 0, 0.6);
+  /* 控件透镜（dark）：旋钮在深色下同样是白的，Apple 的开关就是这样。 */
+  --lens-tint-clear: rgba(118, 118, 128, 0.1);
+  --lens-tint-regular: rgba(118, 118, 128, 0.18);
+  --lens-tint-tinted: rgba(99, 99, 102, 0.32);
+  --lens-tint-knob: rgba(255, 255, 255, 0.44);
+  /* 深色下 frost 用黑的，玻璃比背后的画面更沉，和 GlassSurface 一致。 */
+  --pane-frost-clear: rgba(0, 0, 0, 0.06);
+  --pane-frost-regular: rgba(0, 0, 0, 0.14);
+  --pane-frost-tinted: rgba(0, 0, 0, 0.32);
+  --pane-lens-rim: rgba(255, 255, 255, 0.35);
+  --pane-lens-glow: rgba(255, 255, 255, 0.15);
+  --lens-specular: rgba(255, 255, 255, 0.16);
+  --lens-edge: rgba(255, 255, 255, 0.24);
+  --lens-ring-edge: rgba(255, 255, 255, 0.4);
+  --lens-ring-glow: rgba(255, 255, 255, 0.16);
+  --lens-specular-glass: rgba(255, 255, 255, 0.08);
+  --lens-rim: rgba(0, 0, 0, 0.24);
+  --lens-drop:
+    0 0 0 0.5px var(--glass-hairline), 0 1px 3px rgba(0, 0, 0, 0.5);
+  --sheet-tint-clear: rgba(36, 36, 38, 0.62);
+  --sheet-tint-regular: rgba(36, 36, 38, 0.84);
+  --sheet-tint-tinted: rgba(36, 36, 38, 0.95);
+  --sheet-shadow: 0 -8px 40px rgba(0, 0, 0, 0.5);
+
+  /* ---- shadcn tokens (dark) ---- */
+  --background: #000000;
+  --foreground: #ffffff;
+  --card: #1c1c1e;
+  --card-foreground: #ffffff;
+  --popover-clear: rgba(44, 44, 46, 0.56);
+  --popover-regular: rgba(44, 44, 46, 0.78);
+  --popover-tinted: rgba(44, 44, 46, 0.94);
+  --popover-foreground: #ffffff;
+  --primary: var(--site-primary, var(--apple-blue));
+  --primary-foreground: var(--site-primary-foreground, #ffffff);
+  --secondary: rgba(120, 120, 128, 0.32);
+  --secondary-foreground: #ffffff;
+  --muted: #1c1c1e;
+  --muted-foreground: rgba(235, 235, 245, 0.6);
+  --accent: rgba(120, 120, 128, 0.32);
+  --accent-foreground: #ffffff;
+  --destructive: var(--apple-red);
+  --border: rgba(84, 84, 88, 0.48);
+  --input: rgba(120, 120, 128, 0.32);
+  --ring: var(--primary);
+  --chart-1: var(--primary);
+  --chart-2: var(--apple-teal);
+  --chart-3: var(--apple-indigo);
+  --chart-4: var(--apple-orange);
+  --chart-5: var(--apple-pink);
+  --sidebar: rgba(28, 28, 30, 0.78);
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: var(--primary);
+  --sidebar-primary-foreground: var(--primary-foreground);
+  --sidebar-accent: rgba(120, 120, 128, 0.32);
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: rgba(84, 84, 88, 0.4);
+  --sidebar-ring: var(--primary);
+
+  --admin-panel: #111113;
+  --admin-panel-edge: rgba(255, 255, 255, 0.08);
+}
+
+/*
+ * 玻璃通透度（外观设置，像 Apple 液态玻璃的「透明 / 着色」）：一个选项统一调整所有玻璃表面的底色——
+ * 浮层玻璃（.glass）、内容卡片（glass-card）、弹出菜单（bg-popover）、底部抽屉（glass-sheet）及背景遮罩。
+ * <html data-glass> 来自 cookie，首屏就是用户选的那档；没有属性时按标准档。
+ * 三档的原始值在上面按明暗主题分别定义，这里只做选择，所以与明暗无关；
+ * 写成属性选择器而不限定 :root，局部加 data-glass 就能预览某一档（设置页的预览用到）。
+ */
+:root,
+[data-glass="regular"] {
+  --glass-tint: var(--glass-tint-regular);
+  --card-glass-tint: var(--card-glass-tint-regular);
+  --lens-tint: var(--lens-tint-regular);
+  --pane-frost: var(--pane-frost-regular);
+  --sheet-tint: var(--sheet-tint-regular);
+  --popover: var(--popover-regular);
+  --glass-overlay: var(--glass-overlay-regular);
+  --sheet-overlay: var(--sheet-overlay-regular);
+}
+
+[data-glass="clear"] {
+  --glass-tint: var(--glass-tint-clear);
+  --card-glass-tint: var(--card-glass-tint-clear);
+  --lens-tint: var(--lens-tint-clear);
+  --pane-frost: var(--pane-frost-clear);
+  --sheet-tint: var(--sheet-tint-clear);
+  --popover: var(--popover-clear);
+  --glass-overlay: var(--glass-overlay-clear);
+  --sheet-overlay: var(--sheet-overlay-clear);
+}
+
+[data-glass="tinted"] {
+  --glass-tint: var(--glass-tint-tinted);
+  --card-glass-tint: var(--card-glass-tint-tinted);
+  --lens-tint: var(--lens-tint-tinted);
+  --pane-frost: var(--pane-frost-tinted);
+  --sheet-tint: var(--sheet-tint-tinted);
+  --popover: var(--popover-tinted);
+  --glass-overlay: var(--glass-overlay-tinted);
+  --sheet-overlay: var(--sheet-overlay-tinted);
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+    /* SF Pro ships the ss16 stylistic set + wdth axis the Apple kits rely on */
+    font-feature-settings: "ss16" 1;
+    font-variation-settings: "wdth" 100;
+    -webkit-font-smoothing: antialiased;
+  }
+  html {
+    @apply font-sans;
+    /* light-dark() 要靠它才知道当前是哪一套（GlassSurface 的 CSS 全用这个写的）。 */
+    color-scheme: light;
+  }
+  html.dark {
+    color-scheme: dark;
+  }
+}
+
+@layer components {
+  /*
+   * Liquid Glass — translated from the Figma "Fill + Shadow" / "Glass Effect"
+   * layer stack. Figma cannot express backdrop-filter, so its flat rgba
+   * approximations become a real backdrop blur here; the ±1.25px side
+   * highlights and the 0.5px hairline are kept verbatim.
+   */
+  .glass {
+    background-color: var(--glass-tint);
+    box-shadow:
+      1.25px 0 0 -0.75px var(--glass-side),
+      -1.25px 0 0 -0.75px var(--glass-side),
+      0 0 0 0.5px var(--glass-hairline),
+      inset 0 0.5px 0 0 var(--glass-edge),
+      var(--glass-drop);
+  }
+
+  @supports (backdrop-filter: blur(1px)) or (-webkit-backdrop-filter: blur(1px)) {
+    .glass {
+      -webkit-backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+      backdrop-filter: blur(var(--glass-blur)) saturate(var(--glass-saturate));
+    }
+  }
+
+  /*
+   * Prominent = white backing at 94% + accent tint, per the Figma export.
+   * The tint comes from --glass-accent so a variant (destructive, say) can
+   * retint the refraction edges too — otherwise a red button keeps blue rims.
+   */
+  .glass-prominent {
+    background-color: var(--glass-accent, var(--primary));
+    box-shadow:
+      1.25px 0 0 0
+        color-mix(in srgb, var(--glass-accent, var(--primary)) 82%, white),
+      -1.25px 0 0 0
+        color-mix(in srgb, var(--glass-accent, var(--primary)) 82%, white),
+      inset 0 0.5px 0 0 rgba(255, 255, 255, 0.28),
+      var(--glass-drop);
+  }
+
+  /* Specular sheen used on top of glass surfaces */
+  .glass-sheen::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    pointer-events: none;
+    background: linear-gradient(
+      180deg,
+      var(--glass-specular) 0%,
+      transparent 42%
+    );
+  }
+
+  /* Grouped-list container, the iOS Settings pattern；外观同 glass-card。 */
+  .apple-group {
+    border-radius: var(--radius-card);
+    background-color: var(--card-glass-tint);
+    background-image: linear-gradient(
+      180deg,
+      var(--card-glass-specular) 0%,
+      transparent 45%
+    );
+    box-shadow:
+      inset 0 1px 0 0 var(--card-glass-edge),
+      0 0 0 0.5px var(--glass-hairline),
+      var(--card-glass-drop);
+    overflow: hidden;
+  }
+}
+
+/*
+ * 控件透镜：Tab 指示器、开关与滑块的旋钮那一层玻璃的外观，折射本身由
+ * @/components/liquid-glass 用 backdrop-filter 加上去（它只认得 --lens-*）。
+ * 写成 utility 才能压过调用方传入的 bg-card 之类背景。
+ *
+ * 导航层那层大块玻璃（工具栏、弹出层、抽屉）不走这个类：它们的底色、高光、投影
+ * 仍是 .glass / glass-sheet，useLiquidGlass 只把折射叠到它们的 backdrop-filter 上。
+ */
+@utility glass-lens {
+  background-color: var(--lens-fill);
+  background-image: linear-gradient(
+    180deg,
+    var(--lens-sheen) 0%,
+    transparent 52%
+  );
+  box-shadow: var(--lens-ring), var(--lens-drop);
+  /* 折射本身由组件算好放进 --lens-filter-on，下面的规则决定这一刻用不用。 */
+  -webkit-backdrop-filter: var(--lens-filter, none);
+  backdrop-filter: var(--lens-filter, none);
+  transition:
+    background-color 200ms var(--ease-apple),
+    box-shadow 200ms var(--ease-apple);
+}
+
+/*
+ * 什么时候是玻璃，按 Apple HIG 的 Materials 分两种：
+ *
+ * - 常驻（data-trigger="always"）：导航层那层浮在内容之上的玻璃 —— 工具栏、弹出层、
+ *   菜单、抽屉。“Liquid Glass forms a distinct functional layer for controls and
+ *   navigation elements … that floats above the content layer”。
+ * - 瞬时（data-trigger="active"）：分段控件的选中胶囊、滑块、开关这些长在内容层里的
+ *   控件。HIG 说内容层不该用玻璃，唯一的例外是「a transient interactive element like
+ *   sliders and toggles … takes on a Liquid Glass appearance … when a person
+ *   activates it」—— 所以静止时是实心的，按下、拖动的那一刻才变成玻璃。
+ *   取用与否两种判断：调用方自己传（surface 上出现 data-lens-on，分段控件用这种，
+ *   因为胶囊松手后还要滑一段），或者在控件上标 data-lens-active 交给 :active /
+ *   data-dragging（开关标在 Root，滑块标在 Thumb）。
+ *
+ * 底色因此每种 tone 都有两套：静止的实心 --lens-solid 和取用玻璃时的 --lens-glass，
+ * 真正画出来的是 --lens-fill。
+ */
+@layer components {
+  [data-lens] {
+    --lens-filter: var(--lens-filter-on);
+  }
+
+  [data-lens][data-material="lens"][data-tone="surface"] {
+    --lens-solid: var(--lens-solid-surface);
+    --lens-glass: var(--lens-tint);
+  }
+
+  [data-lens][data-material="lens"][data-tone="knob"] {
+    --lens-solid: var(--lens-solid-knob);
+    --lens-glass: var(--lens-tint-knob);
+  }
+
+  /* 用户要求减少透明度（或浏览器不支持）时一点半透明都不留。
+   * 大块玻璃（data-material="pane"）不归这里管，它的底色一直是调用方自己的
+   * .glass / glass-sheet。 */
+  [data-lens][data-material="lens"][data-tier="flat"] {
+    --lens-glass: var(--lens-solid);
+  }
+
+  [data-lens][data-material="lens"] {
+    --lens-fill: var(--lens-glass);
+    /* 实心那档的边：顶上一道高光、底下一道暗边，就是 Apple 实心旋钮的画法。 */
+    --lens-sheen: var(--lens-specular);
+    --lens-ring: inset 0 0.5px 0 0 var(--lens-edge),
+      inset 0 -0.5px 0 0 var(--lens-rim);
+  }
+
+  /*
+   * clear 档且真的在折射：底色换成很淡的 frost，玻璃的厚度改由两层内阴影给
+   * （GlassSurface 的做法）。退化到纯模糊（Safari / Firefox）或不透明时这条不生效，
+   * 调用方的 .glass 原样保留。
+   */
+  [data-lens][data-material="pane"][data-tier="refract"].glass-clear {
+    background-color: var(--pane-frost);
+    box-shadow:
+      inset 0 0 2px 1px var(--pane-lens-rim),
+      inset 0 0 10px 4px var(--pane-lens-glow),
+      var(--glass-drop);
+  }
+
+  /* 瞬时那档静止时是实心的，不折射也就不占合成器的开销。 */
+  [data-lens][data-trigger="active"] {
+    --lens-fill: var(--lens-solid);
+    --lens-filter: none;
+  }
+
+  /* 取用玻璃的那一刻。 */
+  [data-lens][data-trigger="active"][data-lens-on],
+  [data-lens][data-trigger="active"]:is(
+      [data-lens-active]:active,
+      [data-lens-active][data-dragging]
+    ),
+  :is([data-lens-active]:active, [data-lens-active][data-dragging])
+    [data-lens][data-trigger="active"] {
+    --lens-fill: var(--lens-glass);
+    --lens-filter: var(--lens-filter-on);
+    --lens-sheen: var(--lens-specular-glass);
+    --lens-ring: inset 0 0 1.5px 0.5px var(--lens-ring-edge),
+      inset 0 0 6px 2px var(--lens-ring-glow);
+  }
+}
+
+/*
+ * Apple 的 clear 档（HIG Materials）：浮在照片、视频这类画面之上的玻璃，不模糊、
+ * 几乎不着色，背后的画面要先看得清，折射才像玻璃。文字多的面（菜单、弹出层、抽屉）
+ * 别用它，HIG 明确要求那些用 regular 档。只在真能折射时才换底色，见上面的规则。
+ */
+@utility glass-clear {
+  --pane-lens-blur: 0px;
+  --pane-lens-saturate: 110%;
+}
+
+/*
+ * 所有底部抽屉共用的液态玻璃：Select / 菜单 / Popover 在移动端变成的抽屉
+ * （mobile-sheet.tsx 的 mobileSheetPopup）和 Drawer 组件都用它。写成 utility
+ * 才能加 `max-md:` 前缀，并压过调用方传入的 bg-card 之类背景。
+ */
+@utility glass-sheet {
+  background-color: var(--sheet-tint);
+  /* 抽屉的玻璃比浮层更厚，折射时的模糊跟着它走，不是 --glass-blur。 */
+  --pane-lens-blur: var(--sheet-blur);
+  -webkit-backdrop-filter: blur(var(--sheet-blur)) saturate(var(--glass-saturate));
+  backdrop-filter: blur(var(--sheet-blur)) saturate(var(--glass-saturate));
+  box-shadow:
+    inset 0 0.5px 0 0 var(--glass-edge),
+    0 0 0 0.5px var(--glass-hairline),
+    var(--sheet-shadow);
+}
+
+/*
+ * 后台的内容卡片（大纲、分栏、列表卡片、Card 组件、apple-group）统一用它。
+ * 背景是纯色的，模糊透不出东西，而且 backdrop-filter 会让里面 fixed 定位的元素
+ * （比如拖拽时的浮层）改以卡片为参照，所以不加模糊：质感来自半透明底色、
+ * 顶部高光边和淡出的反光。卡片里要实色的部分（表格、吸顶表头）自己用 bg-card。
+ */
+@utility glass-card {
+  border-radius: var(--radius-card);
+  background-color: var(--card-glass-tint);
+  background-image: linear-gradient(
+    180deg,
+    var(--card-glass-specular) 0%,
+    transparent 45%
+  );
+  box-shadow:
+    inset 0 1px 0 0 var(--card-glass-edge),
+    0 0 0 0.5px var(--glass-hairline),
+    var(--card-glass-drop);
+}
+
+/* ---------------------------------------------------------------------------
+ * 通用背景层（见 @/components/ui/background）
+ * 三层叠加：大面积色晕 → 结构纹理 → 噪点。噪点是关键，它让大块渐变
+ * 不出现色带，也是「廉价渐变」和「高级渐变」之间的差别。
+ * ------------------------------------------------------------------------- */
+@layer components {
+  /* 单个极光色晕：径向渐变天然柔和，不需要 filter: blur() 那种昂贵的开销 */
+  .aurora-blob {
+    position: absolute;
+    border-radius: 9999px;
+    /* 带兜底色，单独用 .aurora-blob 而不设 --aurora-tint 时也能显示 */
+    background-image: radial-gradient(
+      closest-side,
+      var(--aurora-tint, color-mix(in oklab, var(--primary) 30%, transparent)),
+      transparent 100%
+    );
+    will-change: transform;
+  }
+
+  /* 只有在用户没有要求减少动态效果时才漂移 */
+  @media (prefers-reduced-motion: no-preference) {
+    .aurora-blob {
+      animation: aurora-drift var(--aurora-duration, 26s) var(--ease-apple)
+        var(--aurora-delay, 0s) infinite alternate;
+    }
+  }
+
+  /* 细网格，用径向遮罩把边缘化掉，避免出现生硬的截断 */
+  .bg-grid-fade {
+    background-image:
+      linear-gradient(to right, var(--separator) 1px, transparent 1px),
+      linear-gradient(to bottom, var(--separator) 1px, transparent 1px);
+    background-size: 56px 56px;
+    opacity: 0.4;
+    -webkit-mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 35%,
+      #000 0%,
+      transparent 100%
+    );
+    mask-image: radial-gradient(
+      ellipse 70% 60% at 50% 35%,
+      #000 0%,
+      transparent 100%
+    );
+  }
+
+  /* 顶部聚光，像一束光打在舞台上 */
+  .bg-spotlight {
+    background-image: radial-gradient(
+      ellipse 80% 55% at 50% -10%,
+      color-mix(in oklab, var(--primary) 26%, transparent),
+      transparent 70%
+    );
+  }
+
+  /* 噪点。soft-light 让它只扰动明度，不脏化色相 */
+  .bg-grain::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHdpZHRoPScyMDAnIGhlaWdodD0nMjAwJz48ZmlsdGVyIGlkPSduJz48ZmVUdXJidWxlbmNlIHR5cGU9J2ZyYWN0YWxOb2lzZScgYmFzZUZyZXF1ZW5jeT0nMC44NScgbnVtT2N0YXZlcz0nNCcgc3RpdGNoVGlsZXM9J3N0aXRjaCcvPjwvZmlsdGVyPjxyZWN0IHdpZHRoPScyMDAnIGhlaWdodD0nMjAwJyBmaWx0ZXI9J3VybCgjbiknLz48L3N2Zz4=");
+    opacity: 0.16;
+    mix-blend-mode: soft-light;
+  }
+
+  .dark .bg-grain::after {
+    opacity: 0.22;
+  }
+}
+
+@keyframes aurora-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+  }
+  50% {
+    transform: translate3d(3%, -4%, 0) scale(1.1);
+  }
+  100% {
+    transform: translate3d(-4%, 3%, 0) scale(0.94);
+  }
+}
+
+/*
+ * 前台路由切换（PageTransition）：旧页快速淡出，新页稍后从下方淡入。
+ * 不支持 View Transitions 的浏览器直接切换，不受影响。
+ */
+::view-transition {
+  /* 过渡期间的点击照常落到新页面上 */
+  pointer-events: none;
+}
+
+::view-transition-old(.page-exit) {
+  animation: 160ms cubic-bezier(0.32, 0.72, 0, 1) both page-fade-out;
+}
+
+::view-transition-new(.page-enter) {
+  animation: 420ms cubic-bezier(0.22, 1, 0.36, 1) 100ms both page-fade-in;
+}
+
+/*
+ * 页头、底部标签栏不参与过渡，并保持在过渡中的页面之上。
+ * 名字只在过渡期间加：带 view-transition-name 的元素会成为 backdrop root，
+ * 常驻会让里面玻璃效果的 backdrop-filter 取不到背后的页面，变成全透明。
+ */
+:root:not([data-theme-transition]):active-view-transition [data-slot="portal-header"] {
+  view-transition-name: portal-header;
+}
+
+:root:not([data-theme-transition]):active-view-transition [data-slot="portal-tab-bar"] {
+  view-transition-name: portal-tab-bar;
+}
+
+::view-transition-group(portal-header),
+::view-transition-group(portal-tab-bar) {
+  animation: none;
+  z-index: 100;
+}
+
+::view-transition-old(portal-header),
+::view-transition-old(portal-tab-bar) {
+  display: none;
+}
+
+::view-transition-new(portal-header),
+::view-transition-new(portal-tab-bar) {
+  animation: none;
+}
+
+/* 外观切换：深色快照始终在上层，进入时扩散，离开时收缩。 */
+:root[data-theme-transition]::view-transition-group(root) {
+  animation: none;
+}
+
+:root[data-theme-transition]::view-transition-image-pair(root) {
+  isolation: isolate;
+}
+
+:root[data-theme-transition]::view-transition-old(root),
+:root[data-theme-transition]::view-transition-new(root) {
+  animation: none;
+  mix-blend-mode: normal;
+  z-index: 1;
+}
+
+:root[data-theme-transition="dark"]::view-transition-new(root),
+:root[data-theme-transition="light"]::view-transition-old(root) {
+  z-index: 2;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  ::view-transition-new(.page-enter) {
+    animation-name: page-fade-in-static;
+  }
+}
+
+@keyframes page-fade-out {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes page-fade-in {
+  from {
+    opacity: 0;
+    translate: 0 12px;
+  }
+}
+
+@keyframes page-fade-in-static {
+  from {
+    opacity: 0;
+  }
+}
+
+/*
+ * 进场动画：上移、微放大并淡入。纯 CSS，首帧就开始播放，不等页面接管，适合首屏元素；
+ * 配合 delay-* 让同一屏的元素依次出现。只在延迟期间保持起始状态，播完不留下样式。
+ * 首屏以下的内容用 components/motion 的 Reveal，滚动到视口时再出现。
+ */
+@utility animate-enter {
+  animation: enter-up 0.8s cubic-bezier(0.22, 1, 0.36, 1) var(--tw-animation-delay, 0s) backwards;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation-name: enter-fade;
+  }
+}
+
+@keyframes enter-up {
+  from {
+    opacity: 0;
+    transform: translateY(32px) scale(0.97);
+  }
+}
+
+@keyframes enter-fade {
+  from {
+    opacity: 0;
+  }
+}

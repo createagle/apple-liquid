@@ -1,0 +1,52 @@
+# 展示页 + 组件 registry 发布到 GitHub Pages。
+#
+# pnpm build 做两件事：shadcn build 生成 public/r/*.json（registry），next build 静态导出到 out/，
+# 其中 public/ 会被原样拷进 out/，所以 registry 和展示页同源：
+#   https://createagle.github.io/apple-liquid/            展示页
+#   https://createagle.github.io/apple-liquid/r/tabs.json 单个组件
+#
+# Pages 把站点挂在仓库名的子路径下，basePath 用 NEXT_PUBLIC_BASE_PATH 传给 next.config.ts。
+name: Deploy to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v5
+      - uses: pnpm/action-setup@v4
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+      - run: pnpm install --frozen-lockfile
+      - run: pnpm build
+        env:
+          NEXT_PUBLIC_BASE_PATH: /apple-liquid
+      - uses: actions/configure-pages@v5
+      - uses: actions/upload-pages-artifact@v4
+        with:
+          path: out
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - id: deployment
+        uses: actions/deploy-pages@v4

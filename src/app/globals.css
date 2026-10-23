@@ -1,0 +1,8 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+
+/* 设计 token（Apple 系统色、材质、字号、圆角）。registry 的基础 item 会把它装到同样的位置。 */
+@import "../styles/apple-liquid.css";
+
+@custom-variant dark (&:is(.dark *));
