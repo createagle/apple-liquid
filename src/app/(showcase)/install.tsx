@@ -182,16 +182,21 @@ function InstallSection({ className }: { className?: string }) {
           <Card
             n={1}
             title="Start a new project"
-            lead="Nothing set up yet? Run the add command in an empty folder and the CLI scaffolds the project for you — it asks for a framework, creates it, writes components.json, then installs the component."
+            lead="Nothing set up yet? init scaffolds the project and installs the whole token set in one go. It asks for a project name, then creates it."
           >
-            <Command>
-              {(run) => `${run} shadcn@latest add ${REGISTRY}/tabs.json`}
+            <Command wrap>
+              {(run) =>
+                `${run} shadcn@latest init --template next --base base --preset nova \\
+  ${REGISTRY}/theme.json`
+              }
             </Command>
             <p className="text-[13px] text-label-secondary">
-              Pick <strong className="text-foreground">Base UI</strong> as the
-              component library and <strong className="text-foreground">Nova</strong>{" "}
-              as the preset when asked — this library is built on both. Then jump
-              to step 3.
+              <code>--template</code> also takes <code>vite</code>,{" "}
+              <code>react-router</code>, <code>astro</code>, <code>start</code>{" "}
+              and <code>laravel</code>. The trailing{" "}
+              <code>theme.json</code> is what brings the design tokens — without
+              it you get a plain shadcn project. Then do step 2&apos;s namespace
+              block and jump to step 3.
             </p>
           </Card>
 

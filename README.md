@@ -19,14 +19,18 @@ CLI 会把源码复制进你的项目 —— 装完就是你自己的代码，�
 
 ### 从零新建一个项目
 
-什么都没有的话，在空目录里直接跑 add，CLI 会先问你要哪个框架，建好项目、
-写好 `components.json`，再把组件装进去：
+什么都没有的话，`init` 一步到位：建好项目、配好 base-nova，并把整套设计 token
+装进去（末尾那个 `theme.json` 就是 token，不带它就只是个普通 shadcn 项目）。
+跑起来会问一次项目名：
 
 ```bash
-pnpm dlx shadcn@latest add https://createagle.github.io/apple-liquid/r/tabs.json
+pnpm dlx shadcn@latest init --template next --base base --preset nova \
+  https://createagle.github.io/apple-liquid/r/theme.json
 ```
 
-问到的时候选 **Base UI** 作为组件库、**Nova** 作为 preset —— 这套组件就是建在这两样上的。
+`--template` 还支持 `vite`、`react-router`、`astro`、`start`、`laravel`。
+
+生成的 `components.json` 里 `registries` 是空的，所以接着做下面「注册命名空间」那步。
 
 ### 在已有项目里接入
 
