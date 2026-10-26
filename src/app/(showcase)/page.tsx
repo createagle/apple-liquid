@@ -231,6 +231,7 @@ import {
 
 import { SitePreferencesPanel } from "@/components/site-preferences-panel";
 
+import { InstallSection } from "./install";
 import { Section } from "./section";
 
 const ACCENTS = [
@@ -310,6 +311,9 @@ export default function ComponentsPage() {
           become bottom sheets; tooltips and hover cards open as dialogs.
         </p>
       </header>
+
+      {/* ------------------------------- Install ------------------------------- */}
+      <InstallSection />
 
       {/* ----------------------------- Appearance ------------------------------ */}
       <section id="appearance" className="scroll-mt-24">

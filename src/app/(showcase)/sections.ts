@@ -6,6 +6,7 @@ export const SECTION_GROUPS: SectionGroup[] = [
   {
     label: "Foundations",
     items: [
+      { id: "install", title: "Install", figma: "shadcn registry" },
       { id: "appearance", title: "Appearance", figma: "Site preferences" },
       { id: "colors", title: "Colors", figma: "Colors" },
       { id: "materials", title: "Materials", figma: "Materials" },
