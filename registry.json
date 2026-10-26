@@ -1426,7 +1426,7 @@
         "@import \"../styles/apple-liquid.css\"": {},
         "@custom-variant dark (&:is(.dark *))": {}
       },
-      "docs": "设计 token 装在 src/styles/apple-liquid.css，并在项目的入口 CSS 里加了一行 @import。入口 CSS 不在 app/globals.css（比如 Vite 的 src/index.css）时，把那行 @import 的相对路径改对即可。"
+      "docs": "设计 token 装成 styles/apple-liquid.css（项目有 src/ 的话就在 src/styles/ 下），并在项目的入口 CSS 里加了一行 @import。入口 CSS 不是 app/globals.css（比如 Vite 的 index.css）时，把那行 @import 的相对路径改对即可。"
     },
     {
       "name": "theme-toggle",

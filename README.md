@@ -40,8 +40,9 @@ pnpm dlx shadcn@latest init --preset nova --base base
 
 每个组件都依赖基础 item `theme`，所以第一次安装时会多出两样东西：
 
-- `src/styles/apple-liquid.css` —— 全部设计 token（Apple 系统色、玻璃材质、字号、圆角，明暗两套）；
-- 入口 CSS（Next.js 下是 `src/app/globals.css`）里多一行 `@import "../styles/apple-liquid.css";`。
+- `styles/apple-liquid.css` —— 全部设计 token（Apple 系统色、玻璃材质、字号、圆角，明暗两套）。
+  项目有 `src/` 的话就在 `src/styles/` 下，没有就在根目录；
+- 入口 CSS（Next.js 下是 `app/globals.css`）里多一行 `@import "../styles/apple-liquid.css";`。
 
 入口 CSS 不在 `app/` 下（比如 Vite 的 `src/index.css`），把那行 `@import` 的相对路径改对即可。
 

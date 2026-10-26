@@ -161,11 +161,12 @@ function InstallSection({ className }: { className?: string }) {
           <Step n={3} title="That is it">
             <p className="text-[14px] text-label-secondary">
               The first install also brings{" "}
-              <code>src/styles/apple-liquid.css</code> — the whole token set
-              (Apple system colours, glass materials, radii, type scale, light
-              and dark) — and adds one <code>@import</code> to your entry CSS.
-              Shared pieces like <code>liquid-glass</code> and npm dependencies
-              come along automatically.
+              <code>styles/apple-liquid.css</code> — under <code>src/</code> if
+              your project has one — with the whole token set (Apple system
+              colours, glass materials, radii, type scale, light and dark), and
+              adds one <code>@import</code> to your entry CSS. Shared pieces
+              like <code>liquid-glass</code> and npm dependencies come along
+              automatically.
             </p>
           </Step>
         </ol>
