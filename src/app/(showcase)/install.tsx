@@ -19,19 +19,10 @@ const RUNNERS = {
 
 type Manager = keyof typeof RUNNERS;
 
-/**
- * One copyable command. `run` is the part that changes with the package
- * manager — the caller passes the rest, so the pnpm / npm / yarn / bun switch
- * above stays the single source of truth.
- */
-function Command({
-  manager,
-  children,
-}: {
-  manager: Manager;
-  children: (run: string) => string;
-}) {
-  const text = children(RUNNERS[manager]);
+const ManagerContext = React.createContext<Manager>("pnpm");
+
+/** A copyable block. Lines are joined with a trailing `\` so long commands wrap. */
+function Block({ text, wrap }: { text: string; wrap?: boolean }) {
   const [copied, setCopied] = React.useState(false);
 
   // 复制成功的提示自己退回去，不占一个状态容器。
@@ -51,15 +42,24 @@ function Command({
   };
 
   return (
-    <div className="relative rounded-[14px] bg-fill-tertiary py-3 pr-12 pl-4">
-      <pre className="overflow-x-auto text-[13px] leading-relaxed whitespace-pre text-foreground">
+    <div className="relative min-w-0 rounded-[14px] bg-fill-tertiary py-3 pr-12 pl-4">
+      <pre
+        className={cn(
+          "text-[13px] leading-relaxed text-foreground",
+          // pre-wrap 只在空格处断行，而这些命令里有很长的无空格片段
+          // （URL、node -pe 的那串），所以换行那档还要允许任意位置断开。
+          wrap
+            ? "whitespace-pre-wrap [overflow-wrap:anywhere]"
+            : "overflow-x-auto whitespace-pre"
+        )}
+      >
         <code>{text}</code>
       </pre>
       <Button
         variant="ghost"
         size="icon-xs"
         className="absolute top-2.5 right-2.5 text-label-secondary"
-        aria-label={copied ? "Copied" : "Copy command"}
+        aria-label={copied ? "Copied" : "Copy"}
         onClick={copy}
       >
         {copied ? (
@@ -72,114 +72,223 @@ function Command({
   );
 }
 
+/**
+ * A command. `children` receives the package manager's runner, so the
+ * pnpm / npm / yarn / bun switch stays the single source of truth.
+ */
+function Command({
+  children,
+  wrap,
+}: {
+  children: (run: string) => string;
+  wrap?: boolean;
+}) {
+  const manager = React.useContext(ManagerContext);
+  return <Block text={children(RUNNERS[manager])} wrap={wrap} />;
+}
+
 function Step({
+  title,
+  lead,
+  children,
+}: {
+  title: string;
+  lead?: React.ReactNode;
+  children: React.ReactNode;
+}) {
+  return (
+    <div className="flex min-w-0 flex-col gap-2">
+      <h4 className="text-[14px] font-semibold">{title}</h4>
+      {lead && <p className="text-[13px] text-label-secondary">{lead}</p>}
+      {children}
+    </div>
+  );
+}
+
+function Card({
   n,
   title,
+  lead,
   children,
 }: {
   n: number;
   title: string;
+  lead: React.ReactNode;
   children: React.ReactNode;
 }) {
   return (
-    <li className="flex gap-3.5">
-      <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-[12px] font-semibold text-primary-foreground">
-        {n}
-      </span>
-      <div className="flex min-w-0 flex-1 flex-col gap-2">
-        <h3 className="text-[15px] font-semibold">{title}</h3>
-        {children}
+    <section className="flex min-w-0 flex-col gap-4 rounded-[18px] bg-card p-6 shadow-[0_0_0_0.5px_var(--glass-hairline),0_1px_2px_rgba(0,0,0,0.03)]">
+      <div className="flex items-start gap-3.5">
+        <span className="mt-0.5 flex size-6 shrink-0 items-center justify-center rounded-full bg-primary text-[12px] font-semibold text-primary-foreground">
+          {n}
+        </span>
+        <div className="flex min-w-0 flex-1 flex-col gap-1">
+          <h3 className="text-[16px] font-semibold">{title}</h3>
+          <p className="text-[13px] text-label-secondary">{lead}</p>
+        </div>
       </div>
-    </li>
+      <div className="flex min-w-0 flex-col gap-5 sm:pl-[38px]">{children}</div>
+    </section>
   );
 }
 
 /**
  * 安装说明。展示页是静态导出的，固定英文（见 locale-provider.tsx）。
- * 这里只讲到「装上能跑」为止，Intlayer 配置、明暗模式这些细节留给 README。
+ * 这里的每条命令都实际跑过；`shadcn add --all` 只认默认 registry，对命名空间
+ * 不生效，所以「装全部」走的是 `list --json` 拼参数。
  */
 function InstallSection({ className }: { className?: string }) {
   const [manager, setManager] = React.useState<Manager>("pnpm");
 
   return (
-    <section id="install" className={cn("scroll-mt-24", className)}>
-      <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
-        <h2 className="text-[22px] font-semibold tracking-tight">Install</h2>
-        <span className="rounded-full bg-fill-tertiary px-2 py-0.5 text-[11px] text-label-secondary">
-          shadcn registry
-        </span>
-      </div>
-      <p className="mb-4 max-w-2xl text-[14px] text-label-secondary">
-        Every component on this page is published as a{" "}
-        <a
-          href="https://ui.shadcn.com/docs/registry"
-          target="_blank"
-          rel="noreferrer"
-          className="text-primary hover:underline"
-        >
-          shadcn registry
-        </a>{" "}
-        item. The CLI copies the source into your project — you own it
-        afterwards, exactly like shadcn/ui.
-      </p>
+    <ManagerContext.Provider value={manager}>
+      <section id="install" className={cn("scroll-mt-24", className)}>
+        <div className="mb-3 flex flex-wrap items-baseline gap-x-3 gap-y-1">
+          <h2 className="text-[22px] font-semibold tracking-tight">Install</h2>
+          <span className="rounded-full bg-fill-tertiary px-2 py-0.5 text-[11px] text-label-secondary">
+            shadcn registry
+          </span>
+        </div>
+        <p className="mb-5 max-w-2xl text-[14px] text-label-secondary">
+          All 66 components are published as a{" "}
+          <a
+            href="https://ui.shadcn.com/docs/registry"
+            target="_blank"
+            rel="noreferrer"
+            className="text-primary hover:underline"
+          >
+            shadcn registry
+          </a>
+          . The CLI copies the source into your project — you own it afterwards,
+          exactly like shadcn/ui.
+        </p>
 
-      <div className="flex flex-col gap-6 rounded-[18px] bg-card p-6 shadow-[0_0_0_0.5px_var(--glass-hairline),0_1px_2px_rgba(0,0,0,0.03)]">
-        <Tabs
-          value={manager}
-          onValueChange={(value) => setManager(value as Manager)}
-        >
-          <TabsList>
-            {(Object.keys(RUNNERS) as Manager[]).map((name) => (
-              <TabsTrigger key={name} value={name}>
-                {name}
-              </TabsTrigger>
-            ))}
-          </TabsList>
-        </Tabs>
+        <div className="mb-5">
+          <Tabs
+            value={manager}
+            onValueChange={(value) => setManager(value as Manager)}
+          >
+            <TabsList>
+              {(Object.keys(RUNNERS) as Manager[]).map((name) => (
+                <TabsTrigger key={name} value={name}>
+                  {name}
+                </TabsTrigger>
+              ))}
+            </TabsList>
+          </Tabs>
+        </div>
 
-        <ol className="flex flex-col gap-6">
-          <Step n={1} title="Start from Tailwind v4 + shadcn">
-            <p className="text-[14px] text-label-secondary">
-              An existing project works too — skip this if you have already run{" "}
-              <code>init</code>.
-            </p>
-            <Command manager={manager}>
-              {(run) => `${run} shadcn@latest init --preset nova --base base`}
-            </Command>
-          </Step>
-
-          <Step n={2} title="Add a component by URL">
-            <p className="text-[14px] text-label-secondary">
-              Swap <code>tabs</code> for any component in the sidebar. Pass
-              several URLs to install them in one go.
-            </p>
-            <Command manager={manager}>
+        <div className="flex min-w-0 flex-col gap-4">
+          <Card
+            n={1}
+            title="Start a new project"
+            lead="Nothing set up yet? Run the add command in an empty folder and the CLI scaffolds the project for you — it asks for a framework, creates it, writes components.json, then installs the component."
+          >
+            <Command>
               {(run) => `${run} shadcn@latest add ${REGISTRY}/tabs.json`}
             </Command>
-          </Step>
-
-          <Step n={3} title="That is it">
-            <p className="text-[14px] text-label-secondary">
-              The first install also brings{" "}
-              <code>styles/apple-liquid.css</code> — under <code>src/</code> if
-              your project has one — with the whole token set (Apple system
-              colours, glass materials, radii, type scale, light and dark), and
-              adds one <code>@import</code> to your entry CSS. Shared pieces
-              like <code>liquid-glass</code> and npm dependencies come along
-              automatically.
+            <p className="text-[13px] text-label-secondary">
+              Pick <strong className="text-foreground">Base UI</strong> as the
+              component library and <strong className="text-foreground">Nova</strong>{" "}
+              as the preset when asked — this library is built on both. Then jump
+              to step 3.
             </p>
-          </Step>
-        </ol>
+          </Card>
 
-        <div className="rounded-[14px] bg-fill-tertiary p-4">
+          <Card
+            n={2}
+            title="Or add it to an existing project"
+            lead="The project needs Tailwind CSS v4 and a components.json. If you already ran shadcn init, skip straight to step 3."
+          >
+            <Step title="Initialise shadcn (once)">
+              <Command>
+                {(run) => `${run} shadcn@latest init --preset nova --base base`}
+              </Command>
+            </Step>
+            <Step
+              title="Register the namespace (optional, once)"
+              lead={
+                <>
+                  Add this to <code>components.json</code> and you can install by
+                  short name instead of pasting URLs.
+                </>
+              }
+            >
+              <Block
+                text={`{
+  "registries": {
+    "@apple-liquid": "${REGISTRY}/{name}.json"
+  }
+}`}
+              />
+            </Step>
+          </Card>
+
+          <Card
+            n={3}
+            title="Install components"
+            lead="Every component is its own item. Install the ones you need, or take the lot."
+          >
+            <Step title="One component">
+              <Command>
+                {(run) => `${run} shadcn@latest add ${REGISTRY}/button.json`}
+              </Command>
+            </Step>
+            <Step
+              title="Several at once"
+              lead="Pass as many as you like. With the namespace registered, use short names."
+            >
+              <Command wrap>
+                {(run) =>
+                  `${run} shadcn@latest add @apple-liquid/button @apple-liquid/card @apple-liquid/slider`
+                }
+              </Command>
+            </Step>
+            <Step
+              title="Browse what is available"
+              lead="74 items: 66 components plus the shared pieces they depend on."
+            >
+              <Command>{(run) => `${run} shadcn@latest list @apple-liquid`}</Command>
+            </Step>
+            <Step
+              title="All 66 components"
+              lead={
+                <>
+                  There is no <code>--all</code> for custom registries, so feed
+                  the list into <code>add</code>. Needs the namespace from step 2.
+                </>
+              }
+            >
+              <Command wrap>
+                {(run) =>
+                  `${run} shadcn@latest add $(${run} shadcn@latest list @apple-liquid -t ui --json \\
+  | node -pe "JSON.parse(require('fs').readFileSync(0,'utf8')).items.map(i=>i.addCommandArgument).join(' ')")`
+                }
+              </Command>
+            </Step>
+          </Card>
+        </div>
+
+        <div className="mt-4 flex flex-col gap-3 rounded-[18px] bg-fill-tertiary p-5">
           <p className="text-[13px] leading-relaxed text-label-secondary">
             <span className="font-semibold text-foreground">
-              One thing to know:
+              What the first install adds:
             </span>{" "}
-            seven components (<code>dialog</code>, <code>input</code>,{" "}
-            <code>field</code>, <code>color-picker</code>, <code>spinner</code>,{" "}
-            <code>theme-toggle</code>, <code>site-preferences</code>) keep their
-            built-in copy bilingual through{" "}
+            <code>styles/apple-liquid.css</code> — under <code>src/</code> if
+            your project has one — with the whole token set (Apple system
+            colours, glass materials, radii, type scale, light and dark), plus
+            one <code>@import</code> in your entry CSS. Shared pieces like{" "}
+            <code>liquid-glass</code> and every npm dependency come along
+            automatically.
+          </p>
+          <p className="text-[13px] leading-relaxed text-label-secondary">
+            <span className="font-semibold text-foreground">
+              Seven components need Intlayer:
+            </span>{" "}
+            <code>dialog</code>, <code>input</code>, <code>field</code>,{" "}
+            <code>color-picker</code>, <code>spinner</code>,{" "}
+            <code>theme-toggle</code> and <code>site-preferences</code> keep
+            their built-in copy bilingual through{" "}
             <a
               href="https://intlayer.org"
               target="_blank"
@@ -188,20 +297,21 @@ function InstallSection({ className }: { className?: string }) {
             >
               Intlayer
             </a>
-            , so your project has to configure it as well — the{" "}
+            , so your project has to configure it too — the{" "}
             <a
-              href="https://github.com/createagle/apple-liquid#关于-intlayer重要"
+              href="https://github.com/createagle/apple-liquid#readme"
               target="_blank"
               rel="noreferrer"
               className="text-primary hover:underline"
             >
               README
             </a>{" "}
-            has the three steps. Everything else installs with no setup.
+            has the three steps, and the CLI prints them as it installs.
+            Everything else needs no setup.
           </p>
         </div>
-      </div>
-    </section>
+      </section>
+    </ManagerContext.Provider>
   );
 }
 

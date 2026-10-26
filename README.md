@@ -10,31 +10,78 @@ shadcn/ui（base-nova 风格，底层 [Base UI](https://base-ui.com)）按 Apple
 展示页是静态页面，拿不到请求头，所以固定显示英文；组件本身的文案是中英双语的，
 装到有服务端的项目里会跟着请求语言走。
 
-## 安装单个组件
+## 安装
 
-组件以 [shadcn registry](https://ui.shadcn.com/docs/registry) 的形式发布，直接用 URL 装：
+组件以 [shadcn registry](https://ui.shadcn.com/docs/registry) 的形式发布，
+CLI 会把源码复制进你的项目 —— 装完就是你自己的代码，和 shadcn/ui 一样。
+
+下面的命令都实际跑通过。示例用 pnpm，换成 `npx` / `yarn dlx` / `bunx --bun` 同理。
+
+### 从零新建一个项目
+
+什么都没有的话，在空目录里直接跑 add，CLI 会先问你要哪个框架，建好项目、
+写好 `components.json`，再把组件装进去：
 
 ```bash
 pnpm dlx shadcn@latest add https://createagle.github.io/apple-liquid/r/tabs.json
 ```
 
-把 `tabs` 换成任何一个组件名即可（`button`、`slider`、`select`、`dialog`、`sidebar`……，
-66 个 UI 组件加 8 个共享能力，完整列表见仓库根目录的 [registry.json](./registry.json)）。多个一次装也行：
+问到的时候选 **Base UI** 作为组件库、**Nova** 作为 preset —— 这套组件就是建在这两样上的。
 
-```bash
-pnpm dlx shadcn@latest add \
-  https://createagle.github.io/apple-liquid/r/button.json \
-  https://createagle.github.io/apple-liquid/r/card.json \
-  https://createagle.github.io/apple-liquid/r/slider.json
-```
+### 在已有项目里接入
 
-### 前提
-
-项目需要是 Tailwind CSS v4 + 已经 `shadcn init` 过（base-nova 风格）：
+项目需要是 Tailwind CSS v4，并且 `shadcn init` 过：
 
 ```bash
 pnpm dlx shadcn@latest init --preset nova --base base
 ```
+
+### 注册命名空间（可选，一次）
+
+在 `components.json` 里加上这段，之后就能用短名字装，不用每次贴 URL：
+
+```json
+{
+  "registries": {
+    "@apple-liquid": "https://createagle.github.io/apple-liquid/r/{name}.json"
+  }
+}
+```
+
+### 装单个组件
+
+```bash
+# 用 URL
+pnpm dlx shadcn@latest add https://createagle.github.io/apple-liquid/r/button.json
+
+# 注册过命名空间之后
+pnpm dlx shadcn@latest add @apple-liquid/button
+```
+
+### 装多个
+
+```bash
+pnpm dlx shadcn@latest add @apple-liquid/button @apple-liquid/card @apple-liquid/slider
+```
+
+### 看有哪些可装
+
+74 个 item：66 个组件，加上它们依赖的 8 个共享能力。
+
+```bash
+pnpm dlx shadcn@latest list @apple-liquid
+```
+
+### 一次装全部 66 个
+
+`shadcn add --all` 只对默认 registry 生效，自定义 registry 用不了，
+所以把 `list` 的输出喂给 `add`（需要先注册命名空间）：
+
+```bash
+pnpm dlx shadcn@latest add $(pnpm dlx shadcn@latest list @apple-liquid -t ui --json \
+  | node -pe "JSON.parse(require('fs').readFileSync(0,'utf8')).items.map(i=>i.addCommandArgument).join(' ')")
+```
+
 
 ### 装过去会发生什么
 
